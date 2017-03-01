@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">RestaurantAssistant</string>
     <string name="edit_message">Enter a message</string>
-    <string name="button_food">FOOD</string>
+    <string name="button_menu">MENU</string>
+    <string name="button_drinks">DRINKS</string>
+    <string name="button_waiter">CALL WAITER</string>
+    <string name="button_bill">VIEW BILL</string>
 </resources>

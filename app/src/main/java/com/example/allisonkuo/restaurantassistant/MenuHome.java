@@ -23,8 +23,8 @@ public class MenuHome extends AppCompatActivity {
 
     }
 
-    /** Called when the user clicks the Send button */
-    public void sendMessage(View view) {
+    /** Called when the user clicks the food menu button */
+    public void test(View view) {
 
     }
 }
