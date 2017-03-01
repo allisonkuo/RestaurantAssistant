@@ -24,7 +24,7 @@ public class MenuHome extends AppCompatActivity {
     ImageButton button_menu = (ImageButton) findViewById(R.id.button_menu);
     int btn_size = button_menu.getLayoutParams().width;
     LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(btn_size, btn_size);
-    button_menu.setLayoutParams(param);å
+    button_menu.setLayoutParams(param);
 
 
     /** Called when the user clicks the Send button */
