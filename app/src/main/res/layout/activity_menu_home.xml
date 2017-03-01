@@ -6,9 +6,49 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <EditText android:id="@+id/edit_message"
-        android:layout_width="wrap_content"
+    <ImageButton
+        android:id="@+id/button_menu"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/edit_message" />
+        android:layout_weight="1"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        android:src="@drawable/button_menu"
+        android:background="#f1f1f1"
+        style="?android:attr/borderlessButtonStyle" />
+
+    <ImageButton
+        android:id="@+id/button_drinks"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/button_menu"
+        android:background="#f1f1f1"
+        style="?android:attr/borderlessButtonStyle" />
+
+    <ImageButton
+        android:id="@+id/button_waiter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="center"
+        android:src="@drawable/button_menu"
+        android:background="#f1f1f1"
+        style="?android:attr/borderlessButtonStyle" />
+
+    <ImageButton
+        android:id="@+id/button_bill"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="center"
+        android:src="@drawable/button_menu"
+        android:background="#f1f1f1"
+        style="?android:attr/borderlessButtonStyle" />
 </LinearLayout>
 
