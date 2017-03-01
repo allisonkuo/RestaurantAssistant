@@ -1,16 +1,18 @@
 package com.example.allisonkuo.restaurantassistant;
 
+import android.content.Intent;
+import android.media.Image;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Layout;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import java.util.concurrent.ExecutionException;
-
-import helper.serverCall;
-
-import static android.support.v7.widget.AppCompatDrawableManager.get;
-
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MenuHome extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
@@ -24,18 +26,7 @@ public class MenuHome extends AppCompatActivity {
 
     /** Called when the user clicks the food menu button */
     public void test(View view) {
-        String result = "";
-        serverCall task = new serverCall();
-        try
-        {
-            // ONLY PART YOU HAVE TO CHANGE
-            result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/test.php","input","*returnedValue*").get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-// server call's response is saved into result
-        Log.v("server response: ", result);
+        Intent intent = new Intent(this, FoodMenuActivity.class);
+        startActivity(intent);
     }
 }
