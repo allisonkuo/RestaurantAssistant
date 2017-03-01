@@ -6,16 +6,20 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <ImageButton
-        android:id="@+id/button_menu"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_margin="10dp"
-        android:layout_gravity="center"
-        android:src="@drawable/button_menu"
-        android:background="#f1f1f1"
-        style="?android:attr/borderlessButtonStyle" />
+        android:layout_gravity="center">
+        <ImageButton
+            android:id="@+id/button_menu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:src="@drawable/button_menu"
+            android:background="#f1f1f1"
+            style="?android:attr/borderlessButtonStyle" />
+    </LinearLayout>
 
     <ImageButton
         android:id="@+id/button_drinks"
