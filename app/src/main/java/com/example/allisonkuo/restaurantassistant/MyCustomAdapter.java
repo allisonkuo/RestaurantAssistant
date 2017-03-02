@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
     private ArrayList<String> list = new ArrayList<String>();
     private Context context;
-    String[] order_count = new String[10];
+    private String[] order_count = new String[10];
 
     public MyCustomAdapter(ArrayList<String> list, Context context) {
         this.list = list;
@@ -43,6 +43,10 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
         // just return 0 if your list items do not have an Id variable.
     }
 
+    public String[] getOrderCount() {
+        return order_count;
+    }
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View view = convertView;
@@ -60,7 +64,10 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
         Button plusButton = (Button) view.findViewById(R.id.plus);
         final TextView itemCount = (TextView) view.findViewById(R.id.count);
 
-        minusButton.setOnClickListener(new View.OnClickListener(){
+        // add order count
+        order_count[position] = itemCount.getText().toString();
+
+        minusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // decrement item count
@@ -71,12 +78,13 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
 
                     itemCount.setText(newCount);
                     order_count[position] = newCount;
+
                 }
 
                 notifyDataSetChanged();
             }
         });
-        plusButton.setOnClickListener(new View.OnClickListener(){
+        plusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // increment item count
@@ -85,6 +93,7 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
                 String newCount = Integer.toString(count);
 
                 itemCount.setText(newCount);
+                order_count[position] = newCount;
 
                 notifyDataSetChanged();
             }

@@ -31,12 +31,19 @@ public class FoodMenuActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private String mActivityTitle;
 
-    private MyCustomAdapter adapter;
+    private MyCustomAdapter full_adapter;
+    private MyCustomAdapter appetizers_adapter;
+    private MyCustomAdapter burgers_adapter;
+    private MyCustomAdapter sandwiches_adapter;
+    private MyCustomAdapter desserts_adapter;
+    private ArrayList<String> full_menu = new ArrayList<String>();
     private ArrayList<String> appetizers = new ArrayList<String>();
     private ArrayList<String> burgers = new ArrayList<String>();
     private ArrayList<String> sandwiches = new ArrayList<String>();
     private ArrayList<String> desserts = new ArrayList<String>();
 
+    private int list_size;
+    private String[] order_count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,31 +68,81 @@ public class FoodMenuActivity extends AppCompatActivity {
         burgers.add("cheese");
         sandwiches.add("grilled cheese");
 
-        adapter = new MyCustomAdapter(appetizers, this);
+        full_menu.add("nachos");
+        full_menu.add("wings");
+        full_menu.add("mozarella sticks");
+        full_menu.add("cheese");
+        full_menu.add("grilled cheese");
+
+        full_adapter = new MyCustomAdapter(full_menu, this);
         ListView listView = (ListView) findViewById(R.id.menu_items);
-        listView.setAdapter(adapter);
+        listView.setAdapter(full_adapter);
     }
 
+    // when order button clicked
     public void order(View view) {
-        // when order button clicked
         // TODO: get name and # of item(s) ordered
-        String[] ordered_appetizers = new String[appetizers.size()];
-        Log.v("output", adapter.order_count[0]);
+        String[] ordered_appetizers = new String[10];
+        String[] ordered_burgers = new String[10];
+        String[] ordered_sandwiches = new String[10];
+        String[] ordered_desserts = new String[10];
+        String[] ordered_full_menu = new String[10];
 
-        for (int i = 0; i < adapter.getCount(); i++) {
-            adapter.getItem(i).toString();
+        // get orders from each food category
+        switch (mActivityTitle) {
+            case "Appetizers":
+                list_size = appetizers_adapter.getCount(); // get number of items in list
+                order_count = appetizers_adapter.getOrderCount(); // get order counts
 
-            TextView count = (TextView) findViewById(R.id.count);
-            String num = count.getText().toString();
-            if (num != "0") {
-                String item = appetizers.get(i) + "," + num;
-                ordered_appetizers[i] = item;
-            }
+                for (int i = 0; i < list_size; i++) {
+                    String item = appetizers_adapter.getItem(i).toString() + "," + order_count[i];
+                    ordered_appetizers[i] = item;
+                }
+                /*for (int i = 0; i < list_size; i++)
+                    Log.v("output", ordered_appetizers[i]);*/
+                break;
+
+            case "Burgers":
+                list_size = burgers_adapter.getCount();
+                order_count = burgers_adapter.getOrderCount();
+
+                for (int i = 0; i < list_size; i++) {
+                    String item = burgers_adapter.getItem(i).toString() + "," + order_count[i];
+                    ordered_burgers[i] = item;
+                }
+                break;
+
+            case "Sandwiches":
+                list_size =  sandwiches_adapter.getCount();
+                order_count = sandwiches_adapter.getOrderCount();
+
+                for (int i = 0; i < list_size; i++) {
+                    String item = sandwiches_adapter.getItem(i).toString() + "," + order_count[i];
+                    ordered_sandwiches[i] = item;
+                }
+                break;
+
+            case "Desserts":
+                list_size =  desserts_adapter.getCount();
+                order_count = desserts_adapter.getOrderCount();
+
+                for (int i = 0; i < list_size; i++) {
+                    String item = desserts_adapter.getItem(i).toString() + "," + order_count[i];
+                    ordered_desserts[i] = item;
+                }
+                break;
+
+            default:
+                list_size =  full_adapter.getCount();
+                order_count = full_adapter.getOrderCount();
+
+                for (int i = 0; i < list_size; i++) {
+                    String item = full_adapter.getItem(i).toString() + "," + order_count[i];
+                    ordered_full_menu[i] = item;
+                }
+                break;
+
         }
-
-        for (int i = 0; i < appetizers.size(); i++)
-            Log.v("output", ordered_appetizers[i]);
-
 
     }
 
@@ -106,25 +163,28 @@ public class FoodMenuActivity extends AppCompatActivity {
 
                 switch (foodCategories[position]) {
                     case "Appetizers":
-                        adapter = new MyCustomAdapter(appetizers, FoodMenuActivity.this);
-                        listView.setAdapter(adapter);
+                        appetizers_adapter = new MyCustomAdapter(appetizers, FoodMenuActivity.this);
+                        listView.setAdapter(appetizers_adapter);
                         break;
 
                     case "Burgers":
-                        adapter = new MyCustomAdapter(burgers, FoodMenuActivity.this);
-                        listView.setAdapter(adapter);
+                        burgers_adapter = new MyCustomAdapter(burgers, FoodMenuActivity.this);
+                        listView.setAdapter(burgers_adapter);
                         break;
 
                     case "Sandwiches":
-                        adapter = new MyCustomAdapter(sandwiches, FoodMenuActivity.this);
-                        listView.setAdapter(adapter);
+                        sandwiches_adapter = new MyCustomAdapter(sandwiches, FoodMenuActivity.this);
+                        listView.setAdapter(sandwiches_adapter);
                         break;
 
                     case "Desserts":
-                        adapter = new MyCustomAdapter(desserts, FoodMenuActivity.this);
-                        listView.setAdapter(adapter);
+                        desserts_adapter = new MyCustomAdapter(desserts, FoodMenuActivity.this);
+                        listView.setAdapter(desserts_adapter);
                         break;
                 }
+                // set the title to category chosen
+                mActivityTitle = foodCategories[position];
+                getSupportActionBar().setTitle(mActivityTitle);
             }
         });
     }
@@ -169,5 +229,16 @@ public class FoodMenuActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
 
 }
