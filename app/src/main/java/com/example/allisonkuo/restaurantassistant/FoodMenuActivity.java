@@ -61,9 +61,17 @@ public class FoodMenuActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
+    public void order(View view) {
+        // when order button clicked
+        // TODO: get name and # of item(s) ordered
+        TextView temp = (TextView) findViewById(R.id.temp);
+        temp.setText(appetizers.get(1));
+    }
+
     private void addDrawerItems() {
+        // set navigation drawer list
         foodCategories = getResources().getStringArray(R.array.food_categories);
-        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, foodCategories);
+        mAdapter = new ArrayAdapter<String>(this, R.layout.drawer_list_item, foodCategories);
         mDrawerList.setAdapter(mAdapter);
 
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -139,4 +147,5 @@ public class FoodMenuActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
