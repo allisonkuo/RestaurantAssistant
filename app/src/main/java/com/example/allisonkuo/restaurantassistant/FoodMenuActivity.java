@@ -10,8 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class FoodMenuActivity extends AppCompatActivity {
     private ListView mDrawerList;
@@ -49,6 +53,9 @@ public class FoodMenuActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(FoodMenuActivity.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
+                TextView textView = (TextView) findViewById(R.id.menu_text);
+                textView.setText("NEW TEXT");
+
             }
         });
     }

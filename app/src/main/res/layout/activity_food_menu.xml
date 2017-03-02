@@ -17,10 +17,11 @@
         android:background="#ffffffff">
 
         <TextView
+            android:id="@+id/menu_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="This will be the menu probably..."
+            android:text="This will be the menu"
             android:textSize="24sp"
             android:gravity="center"
             android:layout_marginTop="100dp"/>
@@ -33,6 +34,7 @@
             android:layout_centerHorizontal="true"/>
 
     </RelativeLayout>
+
 
     <!-- Side navigation drawer UI -->
     <ListView
