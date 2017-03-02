@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 public class FoodMenuActivity extends AppCompatActivity {
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
@@ -42,6 +44,16 @@ public class FoodMenuActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        ArrayList<String> appetizers = new ArrayList<String>();
+        appetizers.add("nachos");
+        appetizers.add("wings");
+        appetizers.add("mozarella sticks");
+
+        MyCustomAdapter adapter = new MyCustomAdapter(appetizers, this);
+        ListView listView = (ListView) findViewById(R.id.menu_items);
+        listView.setAdapter(adapter);
+
+
     }
 
     private void addDrawerItems() {
@@ -53,8 +65,8 @@ public class FoodMenuActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(FoodMenuActivity.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
-                TextView textView = (TextView) findViewById(R.id.menu_text);
-                textView.setText("NEW TEXT");
+                //TextView textView = (TextView) findViewById(R.id.menu_text);
+                //textView.setText("NEW TEXT");
 
             }
         });
