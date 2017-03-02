@@ -10,7 +10,7 @@
 
     <!-- string arrays -->
     <string-array name="food_categories">
-        <item>HAPPY HOUR 3-6 PM</item>
+        <item>All</item>
         <item>Appetizers</item>
         <item>Burgers</item>
         <item>Sandwiches</item>

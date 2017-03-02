@@ -24,14 +24,68 @@
             android:background="#ffffffff">
 
             <TextView
-                android:id="@+id/testing"
+                android:id="@+id/header1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="36dp"
+                android:textStyle="bold"
+                android:padding="12dp"
+                android:background="@drawable/rectangle"
+                android:textColor="@color/foodMenuColor"/>
 
             <ListView
                 android:id="@+id/menu_items"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/header1"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/header2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/menu_items"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:textColor="@color/foodMenuColor"/>
+
+            <ListView
+                android:id="@+id/menu_items2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/header2"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/header3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/menu_items2"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:textColor="@color/foodMenuColor"/>
+
+            <ListView
+                android:id="@+id/menu_items3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/header3"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/header4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/menu_items3"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:textColor="@color/foodMenuColor"/>
+
+            <ListView
+                android:id="@+id/menu_items4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/header4"/>
 
         </RelativeLayout>
 
