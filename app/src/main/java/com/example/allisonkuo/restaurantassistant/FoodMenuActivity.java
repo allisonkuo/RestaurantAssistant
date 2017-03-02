@@ -1,10 +1,12 @@
 package com.example.allisonkuo.restaurantassistant;
 
 import android.content.res.Configuration;
+import android.support.v4.util.Pair;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class FoodMenuActivity extends AppCompatActivity {
     private ListView mDrawerList;
@@ -28,10 +31,12 @@ public class FoodMenuActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private String mActivityTitle;
 
+    private MyCustomAdapter adapter;
     private ArrayList<String> appetizers = new ArrayList<String>();
     private ArrayList<String> burgers = new ArrayList<String>();
     private ArrayList<String> sandwiches = new ArrayList<String>();
     private ArrayList<String> desserts = new ArrayList<String>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +44,7 @@ public class FoodMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_food_menu);
 
         // navigation bar
-        mDrawerList = (ListView) findViewById(R.id.navList);
+        mDrawerList = (ListView) findViewById(R.id.nav_list);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mActivityTitle = getTitle().toString();
 
@@ -56,7 +61,7 @@ public class FoodMenuActivity extends AppCompatActivity {
         burgers.add("cheese");
         sandwiches.add("grilled cheese");
 
-        MyCustomAdapter adapter = new MyCustomAdapter(appetizers, this);
+        adapter = new MyCustomAdapter(appetizers, this);
         ListView listView = (ListView) findViewById(R.id.menu_items);
         listView.setAdapter(adapter);
     }
@@ -64,8 +69,24 @@ public class FoodMenuActivity extends AppCompatActivity {
     public void order(View view) {
         // when order button clicked
         // TODO: get name and # of item(s) ordered
-        TextView temp = (TextView) findViewById(R.id.temp);
-        temp.setText(appetizers.get(1));
+        String[] ordered_appetizers = new String[appetizers.size()];
+        Log.v("output", adapter.order_count[0]);
+
+        for (int i = 0; i < adapter.getCount(); i++) {
+            adapter.getItem(i).toString();
+
+            TextView count = (TextView) findViewById(R.id.count);
+            String num = count.getText().toString();
+            if (num != "0") {
+                String item = appetizers.get(i) + "," + num;
+                ordered_appetizers[i] = item;
+            }
+        }
+
+        for (int i = 0; i < appetizers.size(); i++)
+            Log.v("output", ordered_appetizers[i]);
+
+
     }
 
     private void addDrawerItems() {
@@ -147,5 +168,6 @@ public class FoodMenuActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 
 }

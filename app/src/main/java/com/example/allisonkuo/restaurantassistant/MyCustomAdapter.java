@@ -1,6 +1,8 @@
 package com.example.allisonkuo.restaurantassistant;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +20,7 @@ import java.util.ArrayList;
 public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
     private ArrayList<String> list = new ArrayList<String>();
     private Context context;
-
-
+    String[] order_count = new String[10];
 
     public MyCustomAdapter(ArrayList<String> list, Context context) {
         this.list = list;
@@ -69,6 +70,7 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
                     String newCount = Integer.toString(count);
 
                     itemCount.setText(newCount);
+                    order_count[position] = newCount;
                 }
 
                 notifyDataSetChanged();
