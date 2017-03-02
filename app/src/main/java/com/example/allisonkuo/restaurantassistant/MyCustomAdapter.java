@@ -39,7 +39,7 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
     @Override
     public long getItemId(int pos) {
         return 0;
-        //just return 0 if your list items do not have an Id variable.
+        // just return 0 if your list items do not have an Id variable.
     }
 
     @Override
@@ -50,26 +50,40 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
             view = inflater.inflate(R.layout.menu_item, null);
         }
 
-        //Handle TextView and display string from your list
-        TextView listItemText = (TextView)view.findViewById(R.id.list_item_string);
+        // handle TextView and display string from your list
+        TextView listItemText = (TextView) view.findViewById(R.id.list_item_string);
         listItemText.setText(list.get(position));
 
-        //Handle buttons and add onClickListeners
-        Button deleteBtn = (Button)view.findViewById(R.id.minus);
-        Button addBtn = (Button)view.findViewById(R.id.plus);
+        // handle buttons and add onClickListeners
+        Button minusButton = (Button) view.findViewById(R.id.minus);
+        Button plusButton = (Button) view.findViewById(R.id.plus);
+        final TextView itemCount = (TextView) view.findViewById(R.id.count);
 
-        deleteBtn.setOnClickListener(new View.OnClickListener(){
+        minusButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //do something
-                list.remove(position); //or some other task
+                // decrement item count
+                int count = Integer.parseInt(itemCount.getText().toString());
+                if (count > 0) { // can't order less than 0
+                    count -= 1;
+                    String newCount = Integer.toString(count);
+
+                    itemCount.setText(newCount);
+                }
+
                 notifyDataSetChanged();
             }
         });
-        addBtn.setOnClickListener(new View.OnClickListener(){
+        plusButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //do something
+                // increment item count
+                int count = Integer.parseInt(itemCount.getText().toString());
+                count += 1;
+                String newCount = Integer.toString(count);
+
+                itemCount.setText(newCount);
+
                 notifyDataSetChanged();
             }
         });
