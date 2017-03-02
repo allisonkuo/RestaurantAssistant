@@ -66,6 +66,7 @@
         android:background="@null"
         android:scaleType="fitCenter"
         android:contentDescription="@string/button_bill"
+        android:onClick="viewReceipt"
         style="?android:attr/borderlessButtonStyle" />
 </LinearLayout>
 

@@ -53,4 +53,9 @@ public class MenuHome extends AppCompatActivity {
 // server call's response is saved into result
         Log.v("server response: ", result);
     }
+
+    public void viewReceipt(View view) {
+        Intent intent = new Intent(this, receptActivity.class);
+        startActivity(intent);
+    }
 }
