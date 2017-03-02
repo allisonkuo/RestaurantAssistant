@@ -16,14 +16,20 @@ import java.net.URLEncoder;
  * Created by paul on 3/1/17.
  */
 
+// ===== INSTRUCTIONS ON MAKING SERVER CALL =====
+// 1. Copy the commented code below to wherever you want to make server call
+// 2. modify line: results = task.execute... line, indicating which script and key-value pairs you want to pass into the backend PHP script
+// 3. After server call, the return string will be saved into "result"
+
 /*
 String result = "";
 serverCall task = new serverCall();
 try
 {
     // ONLY PART YOU HAVE TO CHANGE
-    // task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/SCRIPT","key1","value1","key2","value2",...).get();
+    // template: result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/SCRIPT","KEY1","VALUE1","KEY2", "VALUE2",...).get();
     result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/test.php","input","*returnedValue*").get();
+
 } catch (InterruptedException e) {
 e.printStackTrace();
 } catch (ExecutionException e) {
@@ -33,6 +39,7 @@ e.printStackTrace();
 Log.v("server response: ", result);
 */
 
+    // IGNORE EVERYTHING BELOW HERE
 public class serverCall extends AsyncTask<String , Void ,String> {
     String server_response;
 
