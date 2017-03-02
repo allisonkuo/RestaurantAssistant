@@ -11,11 +11,10 @@
     <!-- string arrays -->
     <string-array name="food_categories">
         <item>HAPPY HOUR 3-6 PM</item>
-        <item>Starters</item>
-        <item>Soups and Salads</item>
+        <item>Appetizers</item>
+        <item>Burgers</item>
         <item>Sandwiches</item>
-        <item>Sides</item>
-        <item>Sweets</item>
+        <item>Desserts</item>
     </string-array>
     <string name="title_activity_food_menu">FoodMenu</string>
 
