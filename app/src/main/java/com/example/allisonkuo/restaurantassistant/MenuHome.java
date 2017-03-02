@@ -6,11 +6,16 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Layout;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.concurrent.ExecutionException;
+
+import helper.serverCall;
 
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
@@ -28,5 +33,24 @@ public class MenuHome extends AppCompatActivity {
     public void openMenu(View view) {
         Intent intent = new Intent(this, FoodMenuActivity.class);
         startActivity(intent);
+    }
+
+    public void callWaiter(View view)
+    {
+        String result = "";
+        serverCall task = new serverCall();
+        try
+        {
+            // ONLY PART YOU HAVE TO CHANGE
+            // template: result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/SCRIPT","KEY1","VALUE1","KEY2", "VALUE2",...).get();
+            result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/callWaiter.php","table","3").get();
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+// server call's response is saved into result
+        Log.v("server response: ", result);
     }
 }
