@@ -19,7 +19,7 @@
         android:background="@null"
         android:scaleType="fitCenter"
         android:contentDescription="@string/button_menu"
-        android:onClick="test"
+        android:onClick="openMenu"
         style="?android:attr/borderlessButtonStyle" />
 
     <ImageButton
