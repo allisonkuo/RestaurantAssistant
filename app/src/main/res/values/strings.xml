@@ -5,4 +5,20 @@
     <string name="button_drinks">DRINKS</string>
     <string name="button_waiter">CALL WAITER</string>
     <string name="button_bill">VIEW BILL</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
+    <!-- string arrays -->
+    <string-array name="food_categories">
+        <item>HAPPY HOUR 3-6 PM</item>
+        <item>Starters</item>
+        <item>Soups and Salads</item>
+        <item>Sandwiches</item>
+        <item>Sides</item>
+        <item>Sweets</item>
+    </string-array>
+    <string name="title_activity_food_menu">FoodMenu</string>
+
+
+    <string name="action_settings">Settings</string>
 </resources>
