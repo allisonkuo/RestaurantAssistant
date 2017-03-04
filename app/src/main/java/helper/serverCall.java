@@ -61,7 +61,7 @@ public class serverCall extends AsyncTask<String , Void ,String> {
                 }
                 param += strings[i];
                 param += "=";
-                param += URLEncoder.encode(strings[i+1],"UTF-8");
+                param += strings[i+1];
             }
 
             urlConnection = (HttpURLConnection) url.openConnection();
