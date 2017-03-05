@@ -10,8 +10,7 @@
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_marginRight="8dp"
-        android:textSize="18sp"
-         />
+        android:textSize="18sp" />
 
 
     <Button

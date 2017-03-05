@@ -43,6 +43,11 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
         // just return 0 if your list items do not have an Id variable.
     }
 
+    public void clear() {
+        list.clear();
+        notifyDataSetChanged();
+    }
+
     public String[] getOrderCount() {
         return order_count;
     }

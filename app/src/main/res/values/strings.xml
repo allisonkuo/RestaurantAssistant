@@ -10,7 +10,6 @@
 
     <!-- string arrays -->
     <string-array name="food_categories">
-        <item>All</item>
         <item>Appetizers</item>
         <item>Burgers</item>
         <item>Sandwiches</item>

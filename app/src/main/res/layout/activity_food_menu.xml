@@ -38,56 +38,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/header1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_marginBottom="10dp"/>
-
-            <TextView
-                android:id="@+id/header2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/menu_items"
-                android:textSize="24dp"
-                android:textStyle="bold"
-                android:textColor="@color/foodMenuColor"/>
-
-            <ListView
-                android:id="@+id/menu_items2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/header2"
-                android:layout_marginBottom="10dp"/>
-
-            <TextView
-                android:id="@+id/header3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/menu_items2"
-                android:textSize="24dp"
-                android:textStyle="bold"
-                android:textColor="@color/foodMenuColor"/>
-
-            <ListView
-                android:id="@+id/menu_items3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/header3"
-                android:layout_marginBottom="10dp"/>
-
-            <TextView
-                android:id="@+id/header4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/menu_items3"
-                android:textSize="24dp"
-                android:textStyle="bold"
-                android:textColor="@color/foodMenuColor"/>
-
-            <ListView
-                android:id="@+id/menu_items4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/header4"/>
 
         </RelativeLayout>
+
+        <!-- the view order button -->
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/view_order_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:tint="#fff"
+                app:backgroundTint="@color/drinkMenuColor"
+                android:src="@drawable/cart_outline"
+                android:onClick="viewOrder"/>
+
+        </FrameLayout>
+
 
         <!-- the order button -->
         <FrameLayout
@@ -116,7 +90,6 @@
         </FrameLayout>
 
     </android.support.design.widget.CoordinatorLayout>
-
 
     <!-- side navigation drawer UI -->
     <ListView
