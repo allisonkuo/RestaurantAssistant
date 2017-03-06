@@ -1,23 +1,33 @@
 package com.example.allisonkuo.restaurantassistant;
 
+import android.app.ActionBar;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.util.Pair;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.ListPopupWindowCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -103,6 +113,21 @@ public class FoodMenuActivity extends AppCompatActivity {
     }
 
     public void viewOrder(View view) {
+        LayoutInflater layoutInflater = (LayoutInflater) getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View popupView = layoutInflater.inflate(R.layout.popup_window, null);
+        final PopupWindow popupWindow = new PopupWindow(popupView, RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        FloatingActionButton button = (FloatingActionButton) findViewById(R.id.view_order_button);
+        popupWindow.showAtLocation(button, Gravity.CENTER, 10, 10);
+
+        // close popup window when exit button hit
+        Button exitButton = (Button) popupView.findViewById(R.id.exit);
+        exitButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+            }
+        });
+
 
     }
 
@@ -117,7 +142,6 @@ public class FoodMenuActivity extends AppCompatActivity {
                 .setCancelable(true)
                 .setPositiveButton("order", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // TODO: do something when click order.
                         Toast.makeText(FoodMenuActivity.this, "FOOD ORDERED!", Toast.LENGTH_SHORT).show();
 
                         // closes menu
