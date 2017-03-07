@@ -86,7 +86,6 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
 
                     itemCount.setText(newCount);
                     order_count[position] = newCount;
-
                 }
 
                 notifyDataSetChanged();

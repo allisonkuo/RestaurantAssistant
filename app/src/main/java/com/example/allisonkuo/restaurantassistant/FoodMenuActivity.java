@@ -34,6 +34,7 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
@@ -77,12 +78,17 @@ public class FoodMenuActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        // initialize first page
         getSupportActionBar().setTitle("Appetizers");
         TextView header1 = (TextView) findViewById(R.id.header1);
         header1.setText("APPETIZERS");
         appetizers_adapter = new MyCustomAdapter(R.array.appetizers, FoodMenuActivity.this, appetizers_order_count);
         ListView listView = (ListView) findViewById(R.id.menu_items);
         listView.setAdapter(appetizers_adapter);
+
+        // initialize order_count
+        for (int i = 0; i < 50; i++)
+            order_count[i] = "0";
     }
 
     public void viewOrder(View view) {
@@ -100,36 +106,57 @@ public class FoodMenuActivity extends AppCompatActivity {
 
         int current = 0;
         int i = 0;
-        for (i = 0; i < app.length; i++)
-        {
-            all_orders[i + current] = app[i];
-            order_count[i+current] = appetizers_order_count[i];
+        for (i = 0; i < app.length; i++) {
+            if (!appetizers_order_count[i].equals("0")) {
+                all_orders[i + current] = app[i];
+                order_count[i + current] = appetizers_order_count[i];
+            }
         }
         current += i;
         // burgers
-        for (i = 0; i < burg.length; i++)
-        {
-            all_orders[i + current] = burg[i];
-            order_count[i+current] = burgers_order_count[i];
+        for (i = 0; i < burg.length; i++) {
+            if (!burgers_order_count[i].equals("0")) {
+                all_orders[i + current] = burg[i];
+                order_count[i + current] = burgers_order_count[i];
+            }
         }
         current += i;
         // sandwiches
-        for (i = 0; i < sand.length; i++)
-        {
-            all_orders[i + current] = sand[i];
-            order_count[i+current] = sandwiches_order_count[i];
+        for (i = 0; i < sand.length; i++) {
+            if (!sandwiches_order_count[i].equals("0")) {
+                all_orders[i + current] = sand[i];
+                order_count[i + current] = sandwiches_order_count[i];
+            }
         }
         current += i;
         // desserts
-        for (i = 0; i < dess.length; i++)
-        {
-            all_orders[i + current] = dess[i];
-            order_count[i+current] = desserts_order_count[i];
+        for (i = 0; i < dess.length; i++) {
+            if (!desserts_order_count[i].equals("0")) {
+                all_orders[i + current] = dess[i];
+                order_count[i + current] = desserts_order_count[i];
+            }
         }
         list_size = current + i;
 
+        String total = "";
+        for (int k = 0; k < all_orders.length; k++) {
+            if (!order_count[k].equals("0")) {
+                String temp = order_count[k] + "\t" + all_orders[k] + "\n";
+                total += temp;
+            }
+        }
+
+        // display amounts planning on ordering
+        TextView textView = (TextView) popupView.findViewById(R.id.view_order_popup);
+        if (total.equals("")) {
+            textView.setText("Nothing chosen");
+        }
+        else {
+            textView.setText(total);
+        }
+
         FloatingActionButton button = (FloatingActionButton) findViewById(R.id.view_order_button);
-        popupWindow.showAtLocation(button, Gravity.CENTER, 10, 10);
+        popupWindow.showAtLocation(button, Gravity.CENTER, 0, 0);
 
         // close popup window when exit button hit
         Button exitButton = (Button) popupView.findViewById(R.id.exit);
@@ -166,29 +193,25 @@ public class FoodMenuActivity extends AppCompatActivity {
 
                             int current = 0;
                             int i = 0;
-                            for (i = 0; i < app.length; i++)
-                            {
+                            for (i = 0; i < app.length; i++) {
                                 all_orders[i + current] = app[i];
                                 order_count[i+current] = appetizers_order_count[i];
                             }
                             current += i;
                             // burgers
-                            for (i = 0; i < burg.length; i++)
-                            {
+                            for (i = 0; i < burg.length; i++) {
                                 all_orders[i + current] = burg[i];
                                 order_count[i+current] = burgers_order_count[i];
                             }
                             current += i;
                             // sandwiches
-                            for (i = 0; i < sand.length; i++)
-                            {
+                            for (i = 0; i < sand.length; i++) {
                                 all_orders[i + current] = sand[i];
                                 order_count[i+current] = sandwiches_order_count[i];
                             }
                             current += i;
                             // desserts
-                            for (i = 0; i < dess.length; i++)
-                            {
+                            for (i = 0; i < dess.length; i++) {
                                 all_orders[i + current] = dess[i];
                                 order_count[i+current] = desserts_order_count[i];
                             }
