@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 /**
@@ -66,6 +68,67 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
         TextView listItemText = (TextView) view.findViewById(R.id.list_item_string);
         listItemText.setText(list[position]);
 
+        // handle price and description
+        TextView price = (TextView) view.findViewById(R.id.price);
+        TextView description = (TextView) view.findViewById(R.id.description);
+        price.setText("$12.00");
+        description.setText(list[position]);
+        switch(list[position]) {
+            case "Cheese Sticks":
+                break;
+            case "Mini Corn Dogs":
+                break;
+            case "Chips and Salsa":
+                break;
+            case "Jalapeno Poppers":
+                break;
+            case "Fried Mushrooms":
+                break;
+            case "Toothpicks":
+                break;
+            case "Hot Wings":
+                break;
+            case "Cheese Fries":
+                break;
+            case "Fried Pickle Spears":
+                break;
+            case "Classic Cheeseburger":
+                break;
+            case "Sunny Side Burger":
+                break;
+            case "Short Rib Sliders":
+                break;
+            case "Grilled Chicken":
+                break;
+            case "Buffalo Chicken":
+                break;
+            case "Fried Chicken":
+                break;
+            case "BLT":
+                break;
+            case "Club":
+                break;
+            case "Philly Cheese Steak":
+                break;
+            case "Turkey Melt":
+                break;
+            case "Chocolate Cake":
+                break;
+            case "Cheese Cake":
+                break;
+            case "Ice Cream":
+                break;
+            case "Banana Cream Pie":
+                break;
+            case "Tiramisu":
+                break;
+
+        }
+
+        price.setText("$11.11");
+        description.setText("Delicious food");
+
+
         // handle buttons and add onClickListeners
         Button minusButton = (Button) view.findViewById(R.id.minus);
         Button plusButton = (Button) view.findViewById(R.id.plus);
@@ -74,6 +137,8 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
         // set saved count
         itemCount.setText(order_count[position]);
 
+        // add order count
+        order_count[position] = itemCount.getText().toString();
 
         minusButton.setOnClickListener(new View.OnClickListener() {
             @Override

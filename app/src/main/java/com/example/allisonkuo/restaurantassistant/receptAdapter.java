@@ -87,7 +87,7 @@ public class receptAdapter extends BaseAdapter implements ListAdapter {
 
             TextView price_text = (TextView) view.findViewById(R.id.price);
             price_text.setTypeface(null, Typeface.BOLD);
-            price_text.setText(String.valueOf(total));
+            price_text.setText("$" + String.valueOf(total));
 
         }
 

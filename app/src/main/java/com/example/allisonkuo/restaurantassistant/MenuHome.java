@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -68,14 +69,19 @@ public class MenuHome extends AppCompatActivity {
         {
             ImageButton waiterImage = (ImageButton) view.findViewById(R.id.button_waiter);
             waiterImage.setImageResource(R.drawable.button_waiter_called);
-            Toast.makeText(MenuHome.this, "Waiter is on the way", Toast.LENGTH_SHORT).show();
+
+            Toast toast = Toast.makeText(MenuHome.this, "Waiter is on the way", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.BOTTOM, 0,100);
+            toast.show();
             waiter_called = true;
         }
         else if(result.equals("success") && waiter_called == true)
         {
             ImageButton waiterImage = (ImageButton) view.findViewById(R.id.button_waiter);
             waiterImage.setImageResource(R.drawable.button_waiter);
-            Toast.makeText(MenuHome.this, "Waiter request cancelled", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(MenuHome.this, "Waiter request cancelled", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.BOTTOM, 0,100);
+            toast.show();
             waiter_called = false;
         }
         else
