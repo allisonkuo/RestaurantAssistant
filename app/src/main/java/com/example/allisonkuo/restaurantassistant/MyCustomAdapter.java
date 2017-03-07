@@ -22,10 +22,10 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
     private Context context;
     private String[] order_count = new String[10];
 
-    public MyCustomAdapter(int resourceId, Context context) {
+    public MyCustomAdapter(int resourceId, Context context, String[] orderCount) {
         this.list = context.getResources().getStringArray(resourceId);
         this.context = context;
-        //this.order_count = order_count;
+        this.order_count = orderCount;
     }
 
     @Override
@@ -70,6 +70,9 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
         Button minusButton = (Button) view.findViewById(R.id.minus);
         Button plusButton = (Button) view.findViewById(R.id.plus);
         final TextView itemCount = (TextView) view.findViewById(R.id.count);
+
+        // set saved count
+        itemCount.setText(order_count[position]);
 
         // add order count
         order_count[position] = itemCount.getText().toString();

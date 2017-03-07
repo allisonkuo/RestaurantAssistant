@@ -56,10 +56,10 @@ public class FoodMenuActivity extends AppCompatActivity {
 
     private int list_size;
     private String[] order_count = new String[10];
-    private String[] appetizers_order_count = new String[10];
-    private String[] burgers_order_count = new String[10];
-    private String[] sandwiches_order_count = new String[10];
-    private String[] desserts_order_count = new String[10];
+    private String[] appetizers_order_count = {"0", "0", "0", "0", "0", "0", "0", "0", "0", "0"};
+    private String[] burgers_order_count = {"0", "0", "0", "0", "0", "0", "0", "0", "0", "0"};
+    private String[] sandwiches_order_count = {"0", "0", "0", "0", "0", "0", "0", "0", "0", "0"};
+    private String[] desserts_order_count = {"0", "0", "0", "0", "0", "0", "0", "0", "0", "0"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +81,7 @@ public class FoodMenuActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Appetizers");
         TextView header1 = (TextView) findViewById(R.id.header1);
         header1.setText("APPETIZERS");
-        appetizers_adapter = new MyCustomAdapter(R.array.appetizers, FoodMenuActivity.this);
+        appetizers_adapter = new MyCustomAdapter(R.array.appetizers, FoodMenuActivity.this, appetizers_order_count);
         ListView listView = (ListView) findViewById(R.id.menu_items);
         listView.setAdapter(appetizers_adapter);
     }
@@ -147,7 +147,7 @@ public class FoodMenuActivity extends AppCompatActivity {
                 order_count = appetizers_adapter.getOrderCount(); // get order counts
 
                 for (int i = 0; i < list_size; i++) {
-                    String item = appetizers_adapter.getItem(i).toString() + "," + order_count[i];
+                    String item = appetizers_adapter.getItem(i).toString() + "," + appetizers_order_count[i];
                     ordered_appetizers[i] = item;
                     all_orders[i] = appetizers_adapter.getItem(i).toString();
                 }
@@ -158,7 +158,7 @@ public class FoodMenuActivity extends AppCompatActivity {
                 order_count = burgers_adapter.getOrderCount();
 
                 for (int i = 0; i < list_size; i++) {
-                    String item = burgers_adapter.getItem(i).toString() + "," + order_count[i];
+                    String item = burgers_adapter.getItem(i).toString() + "," + burgers_order_count[i];
                     ordered_burgers[i] = item;
                     all_orders[i] = burgers_adapter.getItem(i).toString();
                 }
@@ -169,7 +169,7 @@ public class FoodMenuActivity extends AppCompatActivity {
                 order_count = sandwiches_adapter.getOrderCount();
 
                 for (int i = 0; i < list_size; i++) {
-                    String item = sandwiches_adapter.getItem(i).toString() + "," + order_count[i];
+                    String item = sandwiches_adapter.getItem(i).toString() + "," + sandwiches_order_count[i];
                     ordered_sandwiches[i] = item;
                     all_orders[i] = sandwiches_adapter.getItem(i).toString();
                 }
@@ -180,11 +180,15 @@ public class FoodMenuActivity extends AppCompatActivity {
                 order_count = desserts_adapter.getOrderCount();
 
                 for (int i = 0; i < list_size; i++) {
-                    String item = desserts_adapter.getItem(i).toString() + "," + order_count[i];
+                    String item = desserts_adapter.getItem(i).toString() + "," + desserts_order_count[i];
                     ordered_desserts[i] = item;
                     all_orders[i] = desserts_adapter.getItem(i).toString();
                 }
                 break;
+        }
+
+        for (int i = 0; i < list_size; i++) {
+            Log.v("output", appetizers_order_count[i]);
         }
 
         String result = "";
@@ -300,7 +304,7 @@ public class FoodMenuActivity extends AppCompatActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-// server call's response is saved into result
+        // server call's response is saved into result
         if(result != "")
             Log.v("server response: ", result);
     }
@@ -319,60 +323,54 @@ public class FoodMenuActivity extends AppCompatActivity {
                 MyCustomAdapter adapter;
                 ListView listView = (ListView) findViewById(R.id.menu_items);
                 TextView header1 = (TextView) findViewById(R.id.header1);
+                Log.v("output", getSupportActionBar().getTitle().toString());
+
+                String prev_category = getSupportActionBar().getTitle().toString();
+                switch (prev_category) {
+                    case "Appetizers":
+                        appetizers_order_count = appetizers_adapter.getOrderCount();
+                        Log.v("output", appetizers_order_count[0]);
+                        break;
+                    case "Burgers":
+                        burgers_order_count = burgers_adapter.getOrderCount();
+                        break;
+                    case "Sandwiches":
+                        sandwiches_order_count = sandwiches_adapter.getOrderCount();
+                        break;
+                    case "Desserts":
+                        desserts_order_count = desserts_adapter.getOrderCount();
+                        break;
+                }
 
                 switch (foodCategories[position]) {
                     case "Appetizers":
                         header1.setText("APPETIZERS");
-                        appetizers_adapter = new MyCustomAdapter(R.array.appetizers, FoodMenuActivity.this);
+                        appetizers_adapter = new MyCustomAdapter(R.array.appetizers, FoodMenuActivity.this, appetizers_order_count);
                         listView.setAdapter(appetizers_adapter);
                         break;
 
                     case "Burgers":
                         header1.setText("BURGERS");
-                        burgers_adapter = new MyCustomAdapter(R.array.burgers, FoodMenuActivity.this);
+                        burgers_adapter = new MyCustomAdapter(R.array.burgers, FoodMenuActivity.this, burgers_order_count);
                         listView.setAdapter(burgers_adapter);
                         break;
 
                     case "Sandwiches":
                         header1.setText("SANDWICHES");
-                        sandwiches_adapter = new MyCustomAdapter(R.array.sandwiches, FoodMenuActivity.this);
+                        sandwiches_adapter = new MyCustomAdapter(R.array.sandwiches, FoodMenuActivity.this, sandwiches_order_count);
                         listView.setAdapter(sandwiches_adapter);
                         break;
 
                     case "Desserts":
                         header1.setText("DESSERTS");
-                        desserts_adapter = new MyCustomAdapter(R.array.desserts, FoodMenuActivity.this);
+                        desserts_adapter = new MyCustomAdapter(R.array.desserts, FoodMenuActivity.this, desserts_order_count);
                         listView.setAdapter(desserts_adapter);
                         break;
 
-                    default:
-                        /*header1.setText("APPETIZERS");
-                        appetizers_adapter = new MyCustomAdapter(appetizers, FoodMenuActivity.this);
-                        listView = (ListView) findViewById(R.id.menu_items);
-                        //listView.setAdapter(appetizers_adapter);
-
-                        TextView header2 = (TextView) findViewById(R.id.header2);
-                        header2.setText("BURGERS");
-                        burgers_adapter = new MyCustomAdapter(burgers, FoodMenuActivity.this);
-                        ListView listView2 = (ListView) findViewById(R.id.menu_items2);
-                        listView2.setAdapter(burgers_adapter);
-
-                        TextView header3 = (TextView) findViewById(R.id.header3);
-                        header3.setText("SANDWICHES");
-                        sandwiches_adapter = new MyCustomAdapter(sandwiches, FoodMenuActivity.this);
-                        ListView listView3 = (ListView) findViewById(R.id.menu_items3);
-                        listView3.setAdapter(sandwiches_adapter);
-
-                        TextView header4 = (TextView) findViewById(R.id.header4);
-                        header4.setText("DESSERTS");
-                        desserts_adapter = new MyCustomAdapter(desserts, FoodMenuActivity.this);
-                        ListView listView4 = (ListView) findViewById(R.id.menu_items4);
-                        listView4.setAdapter(desserts_adapter);
-                        break;*/
                 }
-            // set the title to category chosen
-            mActivityTitle = foodCategories[position];
-            getSupportActionBar().setTitle(mActivityTitle);
+                // set the title to category chosen
+                mActivityTitle = foodCategories[position];
+                getSupportActionBar().setTitle(mActivityTitle);
             }
         });
     }
