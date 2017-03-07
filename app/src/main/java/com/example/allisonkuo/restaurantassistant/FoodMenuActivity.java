@@ -141,7 +141,7 @@ public class FoodMenuActivity extends AppCompatActivity {
         String total = "";
         for (int k = 0; k < all_orders.length; k++) {
             if (!order_count[k].equals("0")) {
-                String temp = order_count[k] + "\t" + all_orders[k] + "\n";
+                String temp = order_count[k] + " " + all_orders[k] + "\n";
                 total += temp;
             }
         }
