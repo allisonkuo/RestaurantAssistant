@@ -70,6 +70,7 @@ public class FoodMenuActivity extends AppCompatActivity {
         mDrawerList = (ListView) findViewById(R.id.nav_list);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mActivityTitle = getTitle().toString();
+        mActivityTitle = "Appetizers";
 
         addDrawerItems();
         setupDrawer();

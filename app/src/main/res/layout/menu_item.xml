@@ -12,33 +12,34 @@
         android:layout_marginRight="8dp"
         android:textSize="18sp" />
 
-
     <Button
-        android:id="@+id/minus"
+        android:id="@+id/plus"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/list_item_string"
+        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:layout_marginRight="100dp"
+        android:text="+" />
 
-        android:text="-" />
 
     <TextView
         android:id="@+id/count"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/minus"
+        android:layout_toLeftOf="@id/plus"
         android:text="0"
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/plus"
+        android:id="@+id/minus"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/count"
+        android:layout_toLeftOf="@id/count"
         android:layout_centerVertical="true"
-        android:text="+" />
+
+        android:text="-" />
 
 </RelativeLayout>
