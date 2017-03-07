@@ -156,7 +156,9 @@ public class FoodMenuActivity extends AppCompatActivity {
         }
 
         FloatingActionButton button = (FloatingActionButton) findViewById(R.id.view_order_button);
+        popupWindow.setFocusable(true);
         popupWindow.showAtLocation(button, Gravity.CENTER, 0, 0);
+
 
         // close popup window when exit button hit
         Button exitButton = (Button) popupView.findViewById(R.id.exit);
