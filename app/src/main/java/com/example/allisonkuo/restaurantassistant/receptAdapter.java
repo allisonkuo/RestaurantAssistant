@@ -41,10 +41,10 @@ public class receptAdapter extends BaseAdapter implements ListAdapter {
 
         try {
             reader = new JSONObject(this.json_reply);
+            total = reader.getDouble("total");
             prices = reader.getJSONObject("prices");
             foods = reader.getJSONObject("foods");
             drinks = reader.getJSONObject("drinks");
-            total = reader.getDouble("total");
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -94,7 +94,7 @@ public class receptAdapter extends BaseAdapter implements ListAdapter {
         else if(item_name == "FOODS" || item_name == "DRINKS" || item_name == "NO ORDERS")
         {
             TextView listItemText = (TextView) view.findViewById(R.id.list_item_string);
-            listItemText.setTypeface(null, Typeface.BOLD);;
+            listItemText.setTypeface(null, Typeface.BOLD);
             listItemText.setText(item_name);
 
             TextView price_text = (TextView) view.findViewById(R.id.price);

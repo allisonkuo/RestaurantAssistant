@@ -48,7 +48,6 @@ public class FoodMenuActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private String mActivityTitle;
 
-    private MyCustomAdapter full_adapter;
     private MyCustomAdapter appetizers_adapter;
     private MyCustomAdapter burgers_adapter;
     private MyCustomAdapter sandwiches_adapter;
@@ -101,8 +100,6 @@ public class FoodMenuActivity extends AppCompatActivity {
                 popupWindow.dismiss();
             }
         });
-
-
     }
 
     // when order button clicked
@@ -136,7 +133,6 @@ public class FoodMenuActivity extends AppCompatActivity {
         String[] ordered_burgers = new String[10];
         String[] ordered_sandwiches = new String[10];
         String[] ordered_desserts = new String[10];
-        String[] ordered_full_menu = new String[10];
 
         String[] all_orders = new String[50];
 

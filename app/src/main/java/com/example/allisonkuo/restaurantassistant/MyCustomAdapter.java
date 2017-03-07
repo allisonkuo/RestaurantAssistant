@@ -101,7 +101,6 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
                 String newCount = Integer.toString(count);
 
                 itemCount.setText(newCount);
-                Log.v("pos", String.valueOf(position));
                 order_count[position] = newCount;
 
                 notifyDataSetChanged();
