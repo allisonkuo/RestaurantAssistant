@@ -125,10 +125,6 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
 
         }
 
-        price.setText("$11.11");
-        description.setText("Delicious food");
-
-
         // handle buttons and add onClickListeners
         Button minusButton = (Button) view.findViewById(R.id.minus);
         Button plusButton = (Button) view.findViewById(R.id.plus);
