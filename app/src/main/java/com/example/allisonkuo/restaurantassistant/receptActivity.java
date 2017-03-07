@@ -40,16 +40,32 @@ public class receptActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         // server call's response is saved into result
-        Log.v("server response: ", result);
+        if(result != "")
+            Log.v("server response: ", result);
 
         // get all order names
-        JSONObject reader = null;
         JSONObject prices = null;
+        JSONObject foods = null;
         try {
-            reader = new JSONObject(result);
+            JSONObject reader = new JSONObject(result);
             prices = reader.getJSONObject("prices");
+            foods = reader.getJSONObject("foods");
+            boolean split = false;
+            if(prices.length() > 0)
+            {
+                orders.add("DRINKS");
+            }
+            else
+            {
+                orders.add("NO ORDERS");
+            }
             for (int i = 0; i < prices.length(); i++)
             {
+                if(split == false && foods.has(prices.names().get(i).toString()))
+                {
+                    orders.add("FOODS");
+                    split = true;
+                }
                 orders.add(prices.names().get(i).toString());
             }
         } catch (JSONException e) {

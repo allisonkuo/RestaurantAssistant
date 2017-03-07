@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -23,6 +24,8 @@
             tools:context=".FoodMenuActivityActivity"
             android:background="#ffffffff">
 
+
+
             <TextView
                 android:id="@+id/testing"
                 android:layout_width="wrap_content"
@@ -32,6 +35,9 @@
                 android:id="@+id/menu_items"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
+
+
 
         </RelativeLayout>
 

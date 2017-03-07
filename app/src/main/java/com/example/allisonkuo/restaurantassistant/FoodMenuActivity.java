@@ -300,7 +300,8 @@ public class FoodMenuActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 // server call's response is saved into result
-        Log.v("server response: ", result);
+        if(result != "")
+            Log.v("server response: ", result);
     }
 
     private void addDrawerItems() {

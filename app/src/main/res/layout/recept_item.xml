@@ -10,8 +10,10 @@
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:textSize="18sp"
-        android:textStyle="bold" />
+         />
 
 
     <TextView
@@ -21,10 +23,12 @@
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="0"
         android:textAlignment="center"
         android:textSize="18sp"
-        android:textStyle="bold" />
+         />
 
 
 </RelativeLayout>

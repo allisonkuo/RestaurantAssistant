@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -30,6 +32,7 @@ public class receptAdapter extends BaseAdapter implements ListAdapter {
     private JSONObject foods = null;
     private JSONObject drinks = null;
     private double total = 0;
+    private  boolean split = false;
 
     public receptAdapter(ArrayList<String> list, String json, Context context) {
         this.list = list;
@@ -73,13 +76,36 @@ public class receptAdapter extends BaseAdapter implements ListAdapter {
         }
 
         // handle TextView and display string from your list
-        TextView listItemText = (TextView) view.findViewById(R.id.list_item_string);
-        listItemText.setText(list.get(position));
-
-        // get price and quantity of each item
-
         String item_name = list.get(position);
-        if(item_name != "TOTAL") {
+        RelativeLayout.LayoutParams llp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        if(item_name == "TOTAL")
+        {
+            TextView listItemText = (TextView) view.findViewById(R.id.list_item_string);
+            listItemText.setTypeface(null, Typeface.BOLD);
+            listItemText.setText(item_name);
+
+            TextView price_text = (TextView) view.findViewById(R.id.price);
+            price_text.setTypeface(null, Typeface.BOLD);
+            price_text.setText(String.valueOf(total));
+
+        }
+
+        else if(item_name == "FOODS" || item_name == "DRINKS" || item_name == "NO ORDERS")
+        {
+            TextView listItemText = (TextView) view.findViewById(R.id.list_item_string);
+            listItemText.setTypeface(null, Typeface.BOLD);;
+            listItemText.setText(item_name);
+
+            TextView price_text = (TextView) view.findViewById(R.id.price);
+            price_text.setText("");
+        }
+
+        else
+        {
+            TextView listItemText = (TextView) view.findViewById(R.id.list_item_string);
+            listItemText.setTypeface(null, Typeface.BOLD);
+            listItemText.setText("   " + item_name);
             String price = "0.00";
             int quantity = 1;
             try {
@@ -93,15 +119,10 @@ public class receptAdapter extends BaseAdapter implements ListAdapter {
             }
 
             final TextView price_text = (TextView) view.findViewById(R.id.price);
+
+            price_text.setTypeface(null, Typeface.NORMAL);
             price_text.setText("$" + price + " x " + quantity);
 
-        }
-        else
-        {
-            final TextView price_text = (TextView) view.findViewById(R.id.price);
-            // TODO
-            price_text.setTypeface(null, Typeface.BOLD);
-            price_text.setText(String.valueOf(total));
         }
         return view;
     }

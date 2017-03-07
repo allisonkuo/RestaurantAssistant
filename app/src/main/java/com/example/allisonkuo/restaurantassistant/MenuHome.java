@@ -50,8 +50,9 @@ public class MenuHome extends AppCompatActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-// server call's response is saved into result
-        Log.v("server response: ", result);
+        // server call's response is saved into result
+        if(result != "")
+            Log.v("server response: ", result);
     }
 
     public void viewReceipt(View view) {
