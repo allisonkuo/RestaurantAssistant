@@ -74,8 +74,6 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
         // set saved count
         itemCount.setText(order_count[position]);
 
-        // add order count
-        order_count[position] = itemCount.getText().toString();
 
         minusButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +101,7 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
                 String newCount = Integer.toString(count);
 
                 itemCount.setText(newCount);
+                Log.v("pos", String.valueOf(position));
                 order_count[position] = newCount;
 
                 notifyDataSetChanged();
