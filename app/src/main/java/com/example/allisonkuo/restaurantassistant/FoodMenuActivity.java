@@ -1,9 +1,11 @@
 package com.example.allisonkuo.restaurantassistant;
 
 import android.app.ActionBar;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.util.Pair;
@@ -20,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,6 +33,8 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import junit.runner.Version;
 
 import org.w3c.dom.Text;
 
@@ -158,7 +163,7 @@ public class FoodMenuActivity extends AppCompatActivity {
         FloatingActionButton button = (FloatingActionButton) findViewById(R.id.view_order_button);
         popupWindow.setFocusable(true);
         popupWindow.showAtLocation(button, Gravity.CENTER, 0, 0);
-
+        dimBehind(popupWindow);
 
         // close popup window when exit button hit
         Button exitButton = (Button) popupView.findViewById(R.id.exit);
@@ -168,6 +173,29 @@ public class FoodMenuActivity extends AppCompatActivity {
                 popupWindow.dismiss();
             }
         });
+    }
+
+    public static void dimBehind(PopupWindow popupWindow) {
+        View container;
+        if (popupWindow.getBackground() == null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                container = (View) popupWindow.getContentView().getParent();
+            } else {
+                container = popupWindow.getContentView();
+            }
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                container = (View) popupWindow.getContentView().getParent().getParent();
+            } else {
+                container = (View) popupWindow.getContentView().getParent();
+            }
+        }
+        Context context = popupWindow.getContentView().getContext();
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager.LayoutParams p = (WindowManager.LayoutParams) container.getLayoutParams();
+        p.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        p.dimAmount = 0.6f;
+        wm.updateViewLayout(container, p);
     }
 
     // when order button clicked

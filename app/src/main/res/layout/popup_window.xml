@@ -15,9 +15,10 @@
             android:id="@+id/view_order_popup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="40dp"
             android:textSize="24dp"
-            android:text="it's a popup window!" />
+            android:text="it's a popup window!"
+            android:lineSpacingExtra="10dp"/>
 
 
         <Button
