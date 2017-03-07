@@ -18,23 +18,24 @@ import java.util.ArrayList;
  */
 
 public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
-    private ArrayList<String> list = new ArrayList<String>();
+    private String[] list;
     private Context context;
     private String[] order_count = new String[10];
 
-    public MyCustomAdapter(ArrayList<String> list, Context context) {
-        this.list = list;
+    public MyCustomAdapter(int resourceId, Context context) {
+        this.list = context.getResources().getStringArray(resourceId);
         this.context = context;
+        //this.order_count = order_count;
     }
 
     @Override
     public int getCount() {
-        return list.size();
+        return list.length;
     }
 
     @Override
     public Object getItem(int pos) {
-        return list.get(pos);
+        return list[pos];
     }
 
     @Override
@@ -43,10 +44,11 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
         // just return 0 if your list items do not have an Id variable.
     }
 
+    /*
     public void clear() {
         list.clear();
         notifyDataSetChanged();
-    }
+    }*/
 
     public String[] getOrderCount() {
         return order_count;
@@ -62,7 +64,7 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
 
         // handle TextView and display string from your list
         TextView listItemText = (TextView) view.findViewById(R.id.list_item_string);
-        listItemText.setText(list.get(position));
+        listItemText.setText(list[position]);
 
         // handle buttons and add onClickListeners
         Button minusButton = (Button) view.findViewById(R.id.minus);

@@ -7,6 +7,8 @@
     <string name="button_bill">VIEW BILL</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="title_activity_food_menu">FoodMenu</string>
+    <string name="action_settings">Settings</string>
 
     <!-- string arrays -->
     <string-array name="food_categories">
@@ -15,8 +17,38 @@
         <item>Sandwiches</item>
         <item>Desserts</item>
     </string-array>
-    <string name="title_activity_food_menu">FoodMenu</string>
 
+    <string-array name="appetizers">
+        <item>Cheese Sticks</item>
+        <item>Mini Corn Dogs</item>
+        <item>Chips and Salsa</item>
+        <item>Jalapeno Poppers</item>
+        <item>Fried Mushrooms</item>
+        <item>Toothpicks</item>
+        <item>Hot Wings</item>
+        <item>Cheese Fries</item>
+        <item>Fried Pickle Spears</item>
+    </string-array>
+    <string-array name="burgers">
+        <item>Classic Cheeseburger</item>
+        <item>Sunny Side Burger</item>
+        <item>Short Rib Sliders</item>
+        <item>Grilled Chicken</item>
+        <item>Buffalo Chicken</item>
+        <item>Fried Chicken</item>
+    </string-array>
+    <string-array name="sandwiches">
+        <item>BLT</item>
+        <item>Club</item>
+        <item>Philly Cheese Steak</item>
+        <item>Turkey Melt</item>
+    </string-array>
+    <string-array name="desserts">
+        <item>Chocolate Cake</item>
+        <item>Cheese Cake</item>
+        <item>Ice Cream</item>
+        <item>Banana Cream Pie</item>
+        <item>Tiramisu</item>
+    </string-array>
 
-    <string name="action_settings">Settings</string>
 </resources>
