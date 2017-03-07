@@ -89,6 +89,45 @@ public class FoodMenuActivity extends AppCompatActivity {
         LayoutInflater layoutInflater = (LayoutInflater) getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
         final View popupView = layoutInflater.inflate(R.layout.popup_window, null);
         final PopupWindow popupWindow = new PopupWindow(popupView, RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        // save each item name into all_orders, and each count into order_count
+        String[] app = getResources().getStringArray(R.array.appetizers);
+        String[] burg = getResources().getStringArray(R.array.burgers);
+        String[] sand = getResources().getStringArray(R.array.sandwiches);
+        String[] dess = getResources().getStringArray(R.array.desserts);
+
+        String[] all_orders = new String[app.length + burg.length + sand.length + dess.length];
+
+        int current = 0;
+        int i = 0;
+        for (i = 0; i < app.length; i++)
+        {
+            all_orders[i + current] = app[i];
+            order_count[i+current] = appetizers_order_count[i];
+        }
+        current += i;
+        // burgers
+        for (i = 0; i < burg.length; i++)
+        {
+            all_orders[i + current] = burg[i];
+            order_count[i+current] = burgers_order_count[i];
+        }
+        current += i;
+        // sandwiches
+        for (i = 0; i < sand.length; i++)
+        {
+            all_orders[i + current] = sand[i];
+            order_count[i+current] = sandwiches_order_count[i];
+        }
+        current += i;
+        // desserts
+        for (i = 0; i < dess.length; i++)
+        {
+            all_orders[i + current] = dess[i];
+            order_count[i+current] = desserts_order_count[i];
+        }
+        list_size = current + i;
+
         FloatingActionButton button = (FloatingActionButton) findViewById(R.id.view_order_button);
         popupWindow.showAtLocation(button, Gravity.CENTER, 10, 10);
 
