@@ -8,10 +8,12 @@ import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
 
@@ -21,6 +23,7 @@ import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MenuHome extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+    public boolean waiter_called = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,14 @@ public class MenuHome extends AppCompatActivity {
         {
             // ONLY PART YOU HAVE TO CHANGE
             // template: result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/SCRIPT","KEY1","VALUE1","KEY2", "VALUE2",...).get();
-            result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/callWaiter.php","table","3").get();
+            if(this.waiter_called == false)
+            {
+                result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/callWaiter.php","table","3").get();
+            }
+            else
+            {
+                result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/resolveCallWaiter.php","table","3").get();
+            }
 
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -53,6 +63,25 @@ public class MenuHome extends AppCompatActivity {
         // server call's response is saved into result
         if(result != "")
             Log.v("server response: ", result);
+
+        if(result.equals("success") && waiter_called == false)
+        {
+            ImageButton waiterImage = (ImageButton) view.findViewById(R.id.button_waiter);
+            waiterImage.setImageResource(R.drawable.button_waiter_called);
+            Toast.makeText(MenuHome.this, "Waiter is on the way", Toast.LENGTH_SHORT).show();
+            waiter_called = true;
+        }
+        else if(result.equals("success") && waiter_called == true)
+        {
+            ImageButton waiterImage = (ImageButton) view.findViewById(R.id.button_waiter);
+            waiterImage.setImageResource(R.drawable.button_waiter);
+            Toast.makeText(MenuHome.this, "Waiter request cancelled", Toast.LENGTH_SHORT).show();
+            waiter_called = false;
+        }
+        else
+        {
+            Toast.makeText(MenuHome.this, "Error", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void viewReceipt(View view) {
