@@ -54,7 +54,7 @@ public class FoodMenuActivity extends AppCompatActivity {
     private MyCustomAdapter desserts_adapter;
 
     private int list_size;
-    private String[] order_count = new String[10];
+    private String[] order_count = new String[50];
     private String[] appetizers_order_count = {"0", "0", "0", "0", "0", "0", "0", "0", "0", "0"};
     private String[] burgers_order_count = {"0", "0", "0", "0", "0", "0", "0", "0", "0", "0"};
     private String[] sandwiches_order_count = {"0", "0", "0", "0", "0", "0", "0", "0", "0", "0"};
@@ -113,10 +113,99 @@ public class FoodMenuActivity extends AppCompatActivity {
                 .setCancelable(true)
                 .setPositiveButton("order", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Toast.makeText(FoodMenuActivity.this, "FOOD ORDERED!", Toast.LENGTH_SHORT).show();
+                        String result = "";
+                        serverCall task = new serverCall();
+                        try
+                        {
+                            // save each item name into all_orders, and each count into order_count
+                            String[] app = getResources().getStringArray(R.array.appetizers);
+                            String[] burg = getResources().getStringArray(R.array.burgers);
+                            String[] sand = getResources().getStringArray(R.array.sandwiches);
+                            String[] dess = getResources().getStringArray(R.array.desserts);
+
+                            String[] all_orders = new String[app.length + burg.length + sand.length + dess.length];
+
+                            int current = 0;
+                            int i = 0;
+                            for (i = 0; i < app.length; i++)
+                            {
+                                all_orders[i + current] = app[i];
+                                order_count[i+current] = appetizers_order_count[i];
+                            }
+                            current += i;
+                            // burgers
+                            for (i = 0; i < burg.length; i++)
+                            {
+                                all_orders[i + current] = burg[i];
+                                order_count[i+current] = burgers_order_count[i];
+                            }
+                            current += i;
+                            // sandwiches
+                            for (i = 0; i < sand.length; i++)
+                            {
+                                all_orders[i + current] = sand[i];
+                                order_count[i+current] = sandwiches_order_count[i];
+                            }
+                            current += i;
+                            // desserts
+                            for (i = 0; i < dess.length; i++)
+                            {
+                                all_orders[i + current] = dess[i];
+                                order_count[i+current] = desserts_order_count[i];
+                            }
+                            list_size = current + i;
+
+                            // Sorry Allison, here comes some solid coding
+                            switch (list_size){
+                                case 24:
+                                    result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/foodOrder.php","table","3",
+                                        all_orders[0], order_count[0],
+                                        all_orders[1], order_count[1],
+                                        all_orders[2], order_count[2],
+                                        all_orders[3], order_count[3],
+                                        all_orders[4], order_count[4],
+                                        all_orders[5], order_count[5],
+                                        all_orders[6], order_count[6],
+                                        all_orders[7], order_count[7],
+                                        all_orders[8], order_count[8],
+                                        all_orders[9], order_count[9],
+                                        all_orders[10],order_count[10],
+                                        all_orders[11],order_count[11],
+                                        all_orders[12],order_count[12],
+                                        all_orders[13],order_count[13],
+                                        all_orders[14],order_count[14],
+                                        all_orders[15],order_count[15],
+                                        all_orders[16],order_count[16],
+                                        all_orders[17],order_count[17],
+                                        all_orders[18],order_count[18],
+                                        all_orders[19],order_count[19],
+                                        all_orders[20],order_count[20],
+                                        all_orders[21],order_count[21],
+                                        all_orders[22],order_count[22],
+                                        all_orders[23],order_count[23]
+                                        ).get();
+                                        break;
+                                default:
+                                    Log.v("here", String.valueOf(list_size));
+                            }
+
+
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        }
+                        // server call's response is saved into result
+                        if(result != "")
+                            Log.v("server response: ", result);
+
+                        if(result == "success")
+                            Toast.makeText(FoodMenuActivity.this, "FOOD ORDERED!", Toast.LENGTH_SHORT).show();
+                        else
+                            Toast.makeText(FoodMenuActivity.this, "ERROR, PLEASE TRY AGAIN", Toast.LENGTH_SHORT).show();
 
                         // closes menu
-                        //FoodMenuActivity.this.finish();
+                        FoodMenuActivity.this.finish();
                     }
                 })
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
@@ -128,181 +217,6 @@ public class FoodMenuActivity extends AppCompatActivity {
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
 
-        // TODO: get name and # of item(s) ordered
-        String[] ordered_appetizers = new String[10];
-        String[] ordered_burgers = new String[10];
-        String[] ordered_sandwiches = new String[10];
-        String[] ordered_desserts = new String[10];
-
-        String[] all_orders = new String[50];
-
-        // get orders from each food category
-        switch (mActivityTitle) {
-            case "Appetizers":
-                list_size = appetizers_adapter.getCount(); // get number of items in list
-                order_count = appetizers_adapter.getOrderCount(); // get order counts
-
-                for (int i = 0; i < list_size; i++) {
-                    String item = appetizers_adapter.getItem(i).toString() + "," + appetizers_order_count[i];
-                    ordered_appetizers[i] = item;
-                    all_orders[i] = appetizers_adapter.getItem(i).toString();
-                }
-                break;
-
-            case "Burgers":
-                list_size = burgers_adapter.getCount();
-                order_count = burgers_adapter.getOrderCount();
-
-                for (int i = 0; i < list_size; i++) {
-                    String item = burgers_adapter.getItem(i).toString() + "," + burgers_order_count[i];
-                    ordered_burgers[i] = item;
-                    all_orders[i] = burgers_adapter.getItem(i).toString();
-                }
-                break;
-
-            case "Sandwiches":
-                list_size =  sandwiches_adapter.getCount();
-                order_count = sandwiches_adapter.getOrderCount();
-
-                for (int i = 0; i < list_size; i++) {
-                    String item = sandwiches_adapter.getItem(i).toString() + "," + sandwiches_order_count[i];
-                    ordered_sandwiches[i] = item;
-                    all_orders[i] = sandwiches_adapter.getItem(i).toString();
-                }
-                break;
-
-            case "Desserts":
-                list_size =  desserts_adapter.getCount();
-                order_count = desserts_adapter.getOrderCount();
-
-                for (int i = 0; i < list_size; i++) {
-                    String item = desserts_adapter.getItem(i).toString() + "," + desserts_order_count[i];
-                    ordered_desserts[i] = item;
-                    all_orders[i] = desserts_adapter.getItem(i).toString();
-                }
-                break;
-        }
-
-        for (int i = 0; i < list_size; i++) {
-            Log.v("output", appetizers_order_count[i]);
-        }
-
-        String result = "";
-        serverCall task = new serverCall();
-        try
-        {
-            // Sorry Allison, here comes some solid coding
-            switch (list_size){
-                case 0:
-                    result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/foodOrder.php","table","3").get();
-                    break;
-                case 1:
-                    result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/foodOrder.php","table","3",
-                            all_orders[0], order_count[0]
-                    ).get();
-                    break;
-                case 2:
-                    result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/foodOrder.php","table","3",
-                            all_orders[0], order_count[0],
-                            all_orders[1], order_count[1]
-                    ).get();
-                    break;
-                case 3:
-                    result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/foodOrder.php","table","3",
-                            all_orders[0], order_count[0],
-                            all_orders[1], order_count[1],
-                            all_orders[2], order_count[2]
-
-                    ).get();
-                    break;
-                case 4:
-                    result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/foodOrder.php","table","3",
-                            all_orders[0], order_count[0],
-                            all_orders[1], order_count[1],
-                            all_orders[2], order_count[2],
-                            all_orders[3], order_count[3]
-                    ).get();
-                    break;
-                case 5:
-                    result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/foodOrder.php","table","3",
-                            all_orders[0], order_count[0],
-                            all_orders[1], order_count[1],
-                            all_orders[2], order_count[2],
-                            all_orders[3], order_count[3],
-                            all_orders[4], order_count[4]
-                    ).get();
-                    break;
-                case 6:
-                    result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/foodOrder.php","table","3",
-                            all_orders[0], order_count[0],
-                            all_orders[1], order_count[1],
-                            all_orders[2], order_count[2],
-                            all_orders[3], order_count[3],
-                            all_orders[4], order_count[4],
-                            all_orders[5], order_count[5]
-                    ).get();
-                    break;
-                case 7:
-                    result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/foodOrder.php","table","3",
-                            all_orders[0], order_count[0],
-                            all_orders[1], order_count[1],
-                            all_orders[2], order_count[2],
-                            all_orders[3], order_count[3],
-                            all_orders[4], order_count[4],
-                            all_orders[5], order_count[5],
-                            all_orders[6], order_count[6]
-                    ).get();
-                    break;
-                case 8:
-                    result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/foodOrder.php","table","3",
-                            all_orders[0], order_count[0],
-                            all_orders[1], order_count[1],
-                            all_orders[2], order_count[2],
-                            all_orders[3], order_count[3],
-                            all_orders[4], order_count[4],
-                            all_orders[5], order_count[5],
-                            all_orders[6], order_count[6],
-                            all_orders[7], order_count[7]
-                    ).get();
-                    break;
-                case 9:
-                    result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/foodOrder.php","table","3",
-                            all_orders[0], order_count[0],
-                            all_orders[1], order_count[1],
-                            all_orders[2], order_count[2],
-                            all_orders[3], order_count[3],
-                            all_orders[4], order_count[4],
-                            all_orders[5], order_count[5],
-                            all_orders[6], order_count[6],
-                            all_orders[7], order_count[7],
-                            all_orders[8], order_count[8]
-                    ).get();
-                    break;
-                case 10:
-                    result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/foodOrder.php","table","3",
-                            all_orders[0], order_count[0],
-                            all_orders[1], order_count[1],
-                            all_orders[2], order_count[2],
-                            all_orders[3], order_count[3],
-                            all_orders[4], order_count[4],
-                            all_orders[5], order_count[5],
-                            all_orders[6], order_count[6],
-                            all_orders[7], order_count[7],
-                            all_orders[8], order_count[8],
-                            all_orders[9], order_count[9]
-                    ).get();
-                    break;
-            }
-
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        // server call's response is saved into result
-        if(result != "")
-            Log.v("server response: ", result);
     }
 
     private void addDrawerItems() {

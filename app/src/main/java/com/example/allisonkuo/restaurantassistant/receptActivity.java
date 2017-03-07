@@ -46,14 +46,16 @@ public class receptActivity extends AppCompatActivity {
         // get all order names
         JSONObject prices = null;
         JSONObject foods = null;
+        JSONObject drinks = null;
         try {
             JSONObject reader = new JSONObject(result);
             prices = reader.getJSONObject("prices");
             foods = reader.getJSONObject("foods");
+            drinks = reader.getJSONObject("drinks");
             boolean split = false;
             if(prices.length() > 0)
             {
-                orders.add("DRINKS");
+                orders.add("FOODS");
             }
             else
             {
@@ -61,9 +63,9 @@ public class receptActivity extends AppCompatActivity {
             }
             for (int i = 0; i < prices.length(); i++)
             {
-                if(split == false && foods.has(prices.names().get(i).toString()))
+                if(split == false && drinks.has(prices.names().get(i).toString()))
                 {
-                    orders.add("FOODS");
+                    orders.add("DRINKS");
                     split = true;
                 }
                 orders.add(prices.names().get(i).toString());
