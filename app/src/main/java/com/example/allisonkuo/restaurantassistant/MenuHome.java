@@ -67,6 +67,9 @@ public class MenuHome extends AppCompatActivity {
             Toast toast = Toast.makeText(MenuHome.this, "Table Reset", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.BOTTOM, 0,100);
             toast.show();
+            ImageButton waiterImage = (ImageButton) this.findViewById(R.id.button_waiter);
+            waiterImage.setImageResource(R.drawable.button_waiter_empty);
+            waiter_called = false;
         }
 
         return super.onOptionsItemSelected(item);

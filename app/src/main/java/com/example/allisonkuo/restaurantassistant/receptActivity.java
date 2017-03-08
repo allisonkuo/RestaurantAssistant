@@ -40,7 +40,7 @@ public class receptActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         // server call's response is saved into result
-        if(result != "")
+        if(!result.equals(""))
             Log.v("server response: ", result);
 
         // get all order names
@@ -49,21 +49,24 @@ public class receptActivity extends AppCompatActivity {
         JSONObject drinks = null;
         try {
             JSONObject reader = new JSONObject(result);
-            prices = reader.getJSONObject("prices");
-            foods = reader.getJSONObject("foods");
-            drinks = reader.getJSONObject("drinks");
-            boolean split = false;
-            if(prices.length() > 0)
-            {
-                orders.add("FOODS");
+            if(reader.length() != 0) {
+                prices = reader.optJSONObject("prices");
+                foods = reader.optJSONObject("foods");
+                drinks = reader.optJSONObject("drinks");
             }
-            else
+            boolean split = false;
+            if(prices == null)
             {
                 orders.add("NO ORDERS");
             }
-            for (int i = 0; i < prices.length(); i++)
+            else if(foods != null)
             {
-                if(split == false && drinks.has(prices.names().get(i).toString()))
+                orders.add("FOODS");
+            }
+
+            for (int i = 0; prices != null && i < prices.length(); i++)
+            {
+                if(split == false && drinks != null && drinks.has(prices.names().get(i).toString()))
                 {
                     orders.add("DRINKS");
                     split = true;

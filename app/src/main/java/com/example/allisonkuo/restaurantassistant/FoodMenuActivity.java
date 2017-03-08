@@ -244,11 +244,18 @@ public class FoodMenuActivity extends Activity {
                         } catch (ExecutionException e) {
                             e.printStackTrace();
                         }
-// server call's response is saved into result
-                        Log.v("server response: ", result);
+                        // server call's response is saved into result
+                        if(!result.equals(""))
+                        {
+                            Log.v("server response: ", result);
+                            Toast.makeText(FoodMenuActivity.this, "FOOD ORDERED!", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(FoodMenuActivity.this, "ERROR, PLEASE TRY AGAIN", Toast.LENGTH_SHORT).show();
+                        }
 
 
-                        Toast.makeText(FoodMenuActivity.this, "FOOD ORDERED!", Toast.LENGTH_SHORT).show();
 
                         // closes menu
                         FoodMenuActivity.this.finish();

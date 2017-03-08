@@ -32,7 +32,6 @@ public class receptAdapter extends BaseAdapter implements ListAdapter {
     private JSONObject foods = null;
     private JSONObject drinks = null;
     private double total = 0;
-    private  boolean split = false;
 
     public receptAdapter(ArrayList<String> list, String json, Context context) {
         this.list = list;
@@ -42,9 +41,9 @@ public class receptAdapter extends BaseAdapter implements ListAdapter {
         try {
             reader = new JSONObject(this.json_reply);
             total = reader.getDouble("total");
-            prices = reader.getJSONObject("prices");
-            foods = reader.getJSONObject("foods");
-            drinks = reader.getJSONObject("drinks");
+            prices = reader.optJSONObject("prices");
+            foods = reader.optJSONObject("foods");
+            drinks = reader.optJSONObject("drinks");
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -87,7 +86,7 @@ public class receptAdapter extends BaseAdapter implements ListAdapter {
 
             TextView price_text = (TextView) view.findViewById(R.id.price);
             price_text.setTypeface(null, Typeface.BOLD);
-            price_text.setText("$" + String.valueOf(total));
+            price_text.setText(String.format("$%.2f", total));
 
         }
 
@@ -121,7 +120,7 @@ public class receptAdapter extends BaseAdapter implements ListAdapter {
             final TextView price_text = (TextView) view.findViewById(R.id.price);
 
             price_text.setTypeface(null, Typeface.NORMAL);
-            price_text.setText("$" + price + " x " + quantity);
+            price_text.setText(String.format("$%s x %s", price, quantity));
 
         }
         return view;
