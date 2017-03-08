@@ -63,22 +63,6 @@ public class MyCustomExpandableAdapter extends BaseExpandableListAdapter {
             view = infalInflater.inflate(R.layout.menu_item, null);
         }
 
-        // set color of each section
-        switch (listDataHeader[groupPosition]) {
-            case "APPETIZERS":
-                view.setBackgroundColor(ContextCompat.getColor(context, R.color.appetizerColor));
-                break;
-            case "BURGERS":
-                view.setBackgroundColor(ContextCompat.getColor(context, R.color.burgersColor));
-                break;
-            case "SANDWICHES":
-                view.setBackgroundColor(ContextCompat.getColor(context, R.color.sandwichesColor));
-                break;
-            case "DESSERTS":
-                view.setBackgroundColor(ContextCompat.getColor(context, R.color.dessertsColor));
-                break;
-        }
-
         // get fonts
         Typeface font = Typeface.createFromAsset(context.getAssets(), "Lato-Regular.ttf");
         Typeface fontbold= Typeface.createFromAsset(context.getAssets(), "Lato-Bold.ttf");
@@ -95,6 +79,29 @@ public class MyCustomExpandableAdapter extends BaseExpandableListAdapter {
         price.setText("$12.00");
         //description.setTypeface(fontmed);
         description.setText(childText);
+
+        // set color of each section
+        switch (listDataHeader[groupPosition]) {
+            case "APPETIZERS":
+                view.setBackgroundColor(ContextCompat.getColor(context, R.color.appetizerColor));
+                break;
+            case "BURGERS":
+                view.setBackgroundColor(ContextCompat.getColor(context, R.color.burgersColor));
+                break;
+            case "SANDWICHES":
+                view.setBackgroundColor(ContextCompat.getColor(context, R.color.sandwichesColor));
+                txtListChild.setTextColor(ContextCompat.getColor(context, R.color.morelight));
+                price.setTextColor(ContextCompat.getColor(context, R.color.morelight)); // set text color lighter
+                description.setTextColor(ContextCompat.getColor(context, R.color.morelight));
+                break;
+            case "DESSERTS":
+                view.setBackgroundColor(ContextCompat.getColor(context, R.color.dessertsColor));
+                txtListChild.setTextColor(ContextCompat.getColor(context, R.color.morelight));
+                price.setTextColor(ContextCompat.getColor(context, R.color.morelight));
+                description.setTextColor(ContextCompat.getColor(context, R.color.morelight));
+
+                break;
+        }
 
         switch(childText) {
             case "Cheese Sticks":

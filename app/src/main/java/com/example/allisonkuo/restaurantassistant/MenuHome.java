@@ -68,7 +68,7 @@ public class MenuHome extends AppCompatActivity {
             waiterImage.setImageResource(R.drawable.button_waiter);
 
             Toast toast = Toast.makeText(MenuHome.this, "Waiter is on the way", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.BOTTOM, 0,100);
+            toast.setGravity(Gravity.BOTTOM, 0, 100);
             toast.show();
             waiter_called = true;
         }
@@ -76,7 +76,7 @@ public class MenuHome extends AppCompatActivity {
             ImageButton waiterImage = (ImageButton) view.findViewById(R.id.button_waiter);
             waiterImage.setImageResource(R.drawable.button_waiter_empty);
             Toast toast = Toast.makeText(MenuHome.this, "Waiter request cancelled", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.BOTTOM, 0,100);
+            toast.setGravity(Gravity.BOTTOM, 0, 100);
             toast.show();
             waiter_called = false;
         }

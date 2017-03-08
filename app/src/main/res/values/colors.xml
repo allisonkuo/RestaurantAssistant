@@ -9,4 +9,6 @@
     <color name="burgersColor">#007191</color>
     <color name="appetizerColor">#004C61</color>
     <color name="drinkMenuColor">#22DAC6</color>
+    <color name="light">#ECF2F4</color>
+    <color name="morelight">#FAFEFF</color>
 </resources>
