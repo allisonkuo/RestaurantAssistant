@@ -9,13 +9,15 @@
     <string name="drawer_close">Close navigation drawer</string>
     <string name="title_activity_food_menu">FoodMenu</string>
     <string name="action_settings">Settings</string>
+    <string name="exit">exit</string>
+    <string name="order">ORDER</string>
 
     <!-- string arrays -->
     <string-array name="food_categories">
-        <item>Appetizers</item>
-        <item>Burgers</item>
-        <item>Sandwiches</item>
-        <item>Desserts</item>
+        <item>APPETIZERS</item>
+        <item>BURGERS</item>
+        <item>SANDWICHES</item>
+        <item>DESSERTS</item>
     </string-array>
 
     <string-array name="appetizers">

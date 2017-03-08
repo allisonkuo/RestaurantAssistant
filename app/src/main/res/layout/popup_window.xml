@@ -3,31 +3,35 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/border_shadow">
-    
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:orientation="vertical"
-        android:background="@android:color/background_light">
-    
-        <TextView
-            android:id="@+id/view_order_popup"
-            android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="40dp"
-            android:textSize="24dp"
-            android:text="it's a popup window!"
-            android:lineSpacingExtra="10dp"/>
+            android:layout_margin="3dp"
+            android:orientation="vertical"
+            android:background="@android:color/background_light">
 
+            <TextView
+                android:id="@+id/view_order_popup"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="40dp"
+                android:textSize="24sp"
+                android:lineSpacingExtra="10dp"/>
 
-        <Button
-            android:id="@+id/exit"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="exit"
-            android:textSize="20dp"
-            android:onClick="exit_order"/>
+            <Button
+                android:id="@+id/exit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/exit"
+                android:textSize="20sp"
+                android:textColor="@android:color/background_light"
+                android:background="@color/drinkMenuColor" />
 
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

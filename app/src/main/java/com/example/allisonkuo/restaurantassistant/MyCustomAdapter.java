@@ -73,6 +73,7 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
         TextView description = (TextView) view.findViewById(R.id.description);
         price.setText("$12.00");
         description.setText(list[position]);
+
         switch(list[position]) {
             case "Cheese Sticks":
                 break;

@@ -4,5 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="foodMenuColor">#01B9ED</color>
+    <color name="dessertsColor">#24CBFA</color>
+    <color name="sandwichesColor">#01A7D6</color>
+    <color name="burgersColor">#007191</color>
+    <color name="appetizerColor">#004C61</color>
     <color name="drinkMenuColor">#22DAC6</color>
 </resources>
