@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -25,6 +27,8 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import helper.serverCall;
 
 public class FoodMenuActivity extends Activity {
 
@@ -199,6 +203,51 @@ public class FoodMenuActivity extends Activity {
                 .setPositiveButton("order", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         String result = "";
+                        serverCall task = new serverCall();
+                        try
+                        {
+
+                            // ONLY PART YOU HAVE TO CHANGE
+                            // template: result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/SCRIPT","KEY1","VALUE1","KEY2", "VALUE2",...).get();
+                            Object[] keys = order_count.keySet().toArray();
+                            Log.v("key:", keys[0].toString());
+                            Log.v("val:", order_count.get(keys[0].toString()).toString());
+                            result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/foodOrder.php","table","3",
+                                    keys[0].toString(),order_count.get(keys[0].toString()).toString(),
+                                    keys[1].toString(),order_count.get(keys[1].toString()).toString(),
+                                    keys[2].toString(),order_count.get(keys[2].toString()).toString(),
+                                    keys[3].toString(),order_count.get(keys[3].toString()).toString(),
+                                    keys[4].toString(),order_count.get(keys[4].toString()).toString(),
+                                    keys[5].toString(),order_count.get(keys[5].toString()).toString(),
+                                    keys[6].toString(),order_count.get(keys[6].toString()).toString(),
+                                    keys[7].toString(),order_count.get(keys[7].toString()).toString(),
+                                    keys[8].toString(),order_count.get(keys[8].toString()).toString(),
+                                    keys[9].toString(),order_count.get(keys[9].toString()).toString(),
+                                    keys[10].toString(),order_count.get(keys[10].toString()).toString(),
+                                    keys[11].toString(),order_count.get(keys[11].toString()).toString(),
+                                    keys[12].toString(),order_count.get(keys[12].toString()).toString(),
+                                    keys[13].toString(),order_count.get(keys[13].toString()).toString(),
+                                    keys[14].toString(),order_count.get(keys[14].toString()).toString(),
+                                    keys[15].toString(),order_count.get(keys[15].toString()).toString(),
+                                    keys[16].toString(),order_count.get(keys[16].toString()).toString(),
+                                    keys[17].toString(),order_count.get(keys[17].toString()).toString(),
+                                    keys[18].toString(),order_count.get(keys[18].toString()).toString(),
+                                    keys[19].toString(),order_count.get(keys[19].toString()).toString(),
+                                    keys[20].toString(),order_count.get(keys[20].toString()).toString(),
+                                    keys[21].toString(),order_count.get(keys[21].toString()).toString(),
+                                    keys[22].toString(),order_count.get(keys[22].toString()).toString(),
+                                    keys[23].toString(),order_count.get(keys[23].toString()).toString()
+                                    ).get();
+
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        }
+// server call's response is saved into result
+                        Log.v("server response: ", result);
+
+
                         Toast.makeText(FoodMenuActivity.this, "FOOD ORDERED!", Toast.LENGTH_SHORT).show();
 
                         // closes menu
