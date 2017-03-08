@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/list_item_string"
@@ -15,7 +15,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="10dp"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@android:color/background_light"/>
 
@@ -36,7 +36,7 @@
         android:layout_marginStart="80dp"
         android:layout_marginRight="8dp"
         android:layout_marginEnd="8dp"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:layout_marginTop="8dp"
         android:textColor="@android:color/background_light"/>
 
@@ -71,7 +71,6 @@
         android:background="@drawable/minus" />
 
     <TextView
-        android:text="$10.99"
         android:id="@+id/price"
         android:layout_width="50dp"
         android:layout_height="wrap_content"

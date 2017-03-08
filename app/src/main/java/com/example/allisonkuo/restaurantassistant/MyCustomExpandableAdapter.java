@@ -79,14 +79,21 @@ public class MyCustomExpandableAdapter extends BaseExpandableListAdapter {
                 break;
         }
 
+        // get fonts
+        Typeface font = Typeface.createFromAsset(context.getAssets(), "Lato-Regular.ttf");
+        Typeface fontbold= Typeface.createFromAsset(context.getAssets(), "Lato-Bold.ttf");
+
         // set food category names
         TextView txtListChild = (TextView) view.findViewById(R.id.list_item_string);
+        txtListChild.setTypeface(fontbold);
         txtListChild.setText(childText);
 
         // TODO: add description and price
         TextView price = (TextView) view.findViewById(R.id.price);
         TextView description = (TextView) view.findViewById(R.id.description);
+        price.setTypeface(font);
         price.setText("$12.00");
+        //description.setTypeface(fontmed);
         description.setText(childText);
 
         switch(childText) {
@@ -215,9 +222,9 @@ public class MyCustomExpandableAdapter extends BaseExpandableListAdapter {
         }
 
         // set header names
-        TextView lblListHeader = (TextView) convertView
-                .findViewById(R.id.lblListHeader);
-        lblListHeader.setTypeface(null, Typeface.BOLD);
+        TextView lblListHeader = (TextView) convertView.findViewById(R.id.lblListHeader);
+        Typeface font = Typeface.createFromAsset(context.getAssets(), "Lato-Light.ttf");
+        lblListHeader.setTypeface(font);
         lblListHeader.setText(headerTitle);
 
         // set header images and colors
@@ -230,12 +237,15 @@ public class MyCustomExpandableAdapter extends BaseExpandableListAdapter {
                 break;
             case "BURGERS":
                 convertView.setBackgroundColor(ContextCompat.getColor(context, R.color.burgersColor));
+                imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.burgers));
                 break;
             case "SANDWICHES":
                 convertView.setBackgroundColor(ContextCompat.getColor(context, R.color.sandwichesColor));
+                imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.sandwiches));
                 break;
             case "DESSERTS":
                 convertView.setBackgroundColor(ContextCompat.getColor(context, R.color.dessertsColor));
+                imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.desserts));
                 break;
         }
 

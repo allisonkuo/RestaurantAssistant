@@ -5,6 +5,7 @@
     android:orientation="horizontal"
     android:padding="30dp"
     android:background="@color/foodMenuColor">
+
     <ImageView
         android:id="@+id/header_image"
         android:layout_width="0dip"
@@ -15,10 +16,9 @@
         android:id="@+id/lblListHeader"
         android:layout_width="0dip"
         android:layout_height="wrap_content"
-        android:layout_weight="9"
+        android:layout_weight="6"
         android:textSize="48sp"
         android:textColor="@android:color/background_light" />
 
-
-
 </LinearLayout>
+
