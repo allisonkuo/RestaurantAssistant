@@ -11,4 +11,9 @@
     <color name="drinkMenuColor">#22DAC6</color>
     <color name="light">#ECF2F4</color>
     <color name="morelight">#FAFEFF</color>
+    <color name="softdrinksColor">#00695E</color>
+    <color name="cocktailColor">#008B7C</color>
+    <color name="beerColor">#0DAD9C</color>
+    <color name="wineColor">#03C9B4</color>
+    <color name="whiskeyColor">#00C772</color>
 </resources>

@@ -1,18 +1,13 @@
 package com.example.allisonkuo.restaurantassistant;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,79 +15,89 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.ExpandableListView.OnChildClickListener;
-import android.widget.ExpandableListView.OnGroupClickListener;
-import android.widget.ExpandableListView.OnGroupCollapseListener;
-import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
 import helper.serverCall;
 
-public class FoodMenuActivity extends Activity {
-
+public class DrinkMenuActivity extends Activity {
     MyCustomExpandableAdapter listAdapter;
     ExpandableListView expListView;
     String[] listDataHeader;
     HashMap<String, List<String>> listDataChild;
-    HashMap<String, Integer> appetizers_order_count;
-    HashMap<String, Integer> burgers_order_count;
-    HashMap<String, Integer> sandwiches_order_count;
-    HashMap<String, Integer> desserts_order_count;
+    HashMap<String, Integer> softdrinks_order_count;
+    HashMap<String, Integer> cocktails_order_count;
+    HashMap<String, Integer> beer_order_count;
+    HashMap<String, Integer> wine_order_count;
+    HashMap<String, Integer> whiskey_order_count;
     HashMap<String, Integer> order_count;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food_menu);
+        setContentView(R.layout.activity_drink_menu);
 
-        listDataHeader = getResources().getStringArray(R.array.food_categories);
+        listDataHeader = getResources().getStringArray(R.array.drink_categories);
         listDataChild = new HashMap<String, List<String>>();
-        appetizers_order_count = new HashMap<String, Integer>();
-        burgers_order_count = new HashMap<String, Integer>();
-        sandwiches_order_count = new HashMap<String, Integer>();
-        desserts_order_count = new HashMap<String, Integer>();
+        softdrinks_order_count = new HashMap<String, Integer>();
+        cocktails_order_count = new HashMap<String, Integer>();
+        beer_order_count = new HashMap<String, Integer>();
+        wine_order_count = new HashMap<String, Integer>();
+        whiskey_order_count = new HashMap<String, Integer>();
 
         order_count = new HashMap<String, Integer>();
 
         // get all child data
-        String[] apps = getResources().getStringArray(R.array.appetizers);
-        String[] burgs = getResources().getStringArray(R.array.burgers);
-        String[] sands = getResources().getStringArray(R.array.sandwiches);
-        String[] dess = getResources().getStringArray(R.array.desserts);
+        String[] soft = getResources().getStringArray(R.array.soft_drinks);
+        String[] cock = getResources().getStringArray(R.array.cocktails);
+        String[] bee = getResources().getStringArray(R.array.beer);
+        String[] win = getResources().getStringArray(R.array.wine);
+        String[] whis = getResources().getStringArray(R.array.whiskey);
 
         // convert to lists for child data
-        List<String> appetizers = new ArrayList<String>(Arrays.asList(apps));
-        List<String> burgers = new ArrayList<String>(Arrays.asList(burgs));
-        List<String> sandwiches = new ArrayList<String>(Arrays.asList(sands));
-        List<String> desserts = new ArrayList<String>(Arrays.asList(dess));
+        List<String> softdrinks = new ArrayList<String>(Arrays.asList(soft));
+        List<String> cocktails = new ArrayList<String>(Arrays.asList(cock));
+        List<String> beer = new ArrayList<String>(Arrays.asList(bee));
+        List<String> wine = new ArrayList<String>(Arrays.asList(win));
+        List<String> whiskey = new ArrayList<String>(Arrays.asList(whis));
 
-        listDataChild.put(listDataHeader[0], appetizers); // header, child data
-        listDataChild.put(listDataHeader[1], burgers);
-        listDataChild.put(listDataHeader[2], sandwiches);
-        listDataChild.put(listDataHeader[3], desserts);
+        listDataChild.put(listDataHeader[0], softdrinks); // header, child data
+        listDataChild.put(listDataHeader[1], cocktails);
+        listDataChild.put(listDataHeader[2], beer);
+        listDataChild.put(listDataHeader[3], wine);
+        listDataChild.put(listDataHeader[4], whiskey);
 
         // initialize order count
-        for (int i = 0; i < apps.length; i++) {
+        for (int i = 0; i < soft.length; i++) {
             order_count.put(listDataChild.get(listDataHeader[0]).get(i), 0);
         }
-        for (int i = 0; i < burgs.length; i++) {
+        for (int i = 0; i < cock.length; i++) {
             order_count.put(listDataChild.get(listDataHeader[1]).get(i), 0);
         }
-        for (int i = 0; i < sands.length; i++) {
+        for (int i = 0; i < bee.length; i++) {
             order_count.put(listDataChild.get(listDataHeader[2]).get(i), 0);
         }
-        for (int i = 0; i < dess.length; i++) {
+        for (int i = 0; i < win.length; i++) {
             order_count.put(listDataChild.get(listDataHeader[3]).get(i), 0);
+        }
+        for (int i = 0; i < whis.length; i++) {
+            order_count.put(listDataChild.get(listDataHeader[4]).get(i), 0);
         }
 
         // set the list view
         expListView = (ExpandableListView) findViewById(R.id.menu_items);
         listAdapter = new MyCustomExpandableAdapter(this, listDataHeader, listDataChild, order_count);
         expListView.setAdapter(listAdapter);
+
     }
 
     // when view order button (shopping cart) is clicked
@@ -101,34 +106,42 @@ public class FoodMenuActivity extends Activity {
         final View popupView = layoutInflater.inflate(R.layout.popup_window, null);
         final PopupWindow popupWindow = new PopupWindow(popupView, RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
-        String[] apps = getResources().getStringArray(R.array.appetizers);
-        String[] burgs = getResources().getStringArray(R.array.burgers);
-        String[] sands = getResources().getStringArray(R.array.sandwiches);
-        String[] dess = getResources().getStringArray(R.array.desserts);
+        String[] soft = getResources().getStringArray(R.array.soft_drinks);
+        String[] cock = getResources().getStringArray(R.array.cocktails);
+        String[] beer = getResources().getStringArray(R.array.beer);
+        String[] wine = getResources().getStringArray(R.array.wine);
+        String[] whis = getResources().getStringArray(R.array.whiskey);
         String total = "";
 
-        for (String i : apps) {
+        for (String i : soft) {
             int count = order_count.get(i);
             if (count != 0) {
                 String temp = Integer.toString(order_count.get(i)) + " " + i + "\n";
                 total += temp;
             }
         }
-        for (String i : burgs) {
+        for (String i : cock) {
             int count = order_count.get(i);
             if (count != 0) {
                 String temp = Integer.toString(order_count.get(i)) + " " + i + "\n";
                 total += temp;
             }
         }
-        for (String i : sands) {
+        for (String i : beer) {
             int count = order_count.get(i);
             if (count != 0) {
                 String temp = Integer.toString(order_count.get(i)) + " " + i + "\n";
                 total += temp;
             }
         }
-        for (String i : dess) {
+        for (String i : wine) {
+            int count = order_count.get(i);
+            if (count != 0) {
+                String temp = Integer.toString(order_count.get(i)) + " " + i + "\n";
+                total += temp;
+            }
+        }
+        for (String i : whis) {
             int count = order_count.get(i);
             if (count != 0) {
                 String temp = Integer.toString(order_count.get(i)) + " " + i + "\n";
@@ -186,7 +199,7 @@ public class FoodMenuActivity extends Activity {
     // when order button is clicked
     public void order(View view) {
         // create an alert to confirm order
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(FoodMenuActivity.this);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DrinkMenuActivity.this);
         alertDialogBuilder.setTitle("CONFIRM");
 
         // set dialog message
@@ -205,7 +218,7 @@ public class FoodMenuActivity extends Activity {
                             Object[] keys = order_count.keySet().toArray();
                             Log.v("key:", keys[0].toString());
                             Log.v("val:", order_count.get(keys[0].toString()).toString());
-                            result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/foodOrder.php","table","3",
+                            result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/drinkOrder.php","table","3",
                                     keys[0].toString(),order_count.get(keys[0].toString()).toString(),
                                     keys[1].toString(),order_count.get(keys[1].toString()).toString(),
                                     keys[2].toString(),order_count.get(keys[2].toString()).toString(),
@@ -230,7 +243,7 @@ public class FoodMenuActivity extends Activity {
                                     keys[21].toString(),order_count.get(keys[21].toString()).toString(),
                                     keys[22].toString(),order_count.get(keys[22].toString()).toString(),
                                     keys[23].toString(),order_count.get(keys[23].toString()).toString()
-                                    ).get();
+                            ).get();
 
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -241,17 +254,17 @@ public class FoodMenuActivity extends Activity {
                         if(!result.equals(""))
                         {
                             Log.v("server response: ", result);
-                            Toast.makeText(FoodMenuActivity.this, "FOOD ORDERED!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DrinkMenuActivity.this, "DRINKS ORDERED!", Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
-                            Toast.makeText(FoodMenuActivity.this, "ERROR, PLEASE TRY AGAIN", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DrinkMenuActivity.this, "ERROR, PLEASE TRY AGAIN", Toast.LENGTH_SHORT).show();
                         }
 
 
 
                         // closes menu
-                        FoodMenuActivity.this.finish();
+                        DrinkMenuActivity.this.finish();
                     }
                 })
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {

@@ -99,7 +99,21 @@ public class MyCustomExpandableAdapter extends BaseExpandableListAdapter {
                 txtListChild.setTextColor(ContextCompat.getColor(context, R.color.morelight));
                 price.setTextColor(ContextCompat.getColor(context, R.color.morelight));
                 description.setTextColor(ContextCompat.getColor(context, R.color.morelight));
-
+                break;
+            case "SOFT DRINKS":
+                view.setBackgroundColor(ContextCompat.getColor(context, R.color.softdrinksColor));
+                break;
+            case "COCKTAILS":
+                view.setBackgroundColor(ContextCompat.getColor(context, R.color.cocktailColor));
+                break;
+            case "BEER":
+                view.setBackgroundColor(ContextCompat.getColor(context, R.color.beerColor));
+                break;
+            case "WINE":
+                view.setBackgroundColor(ContextCompat.getColor(context, R.color.wineColor));
+                break;
+            case "WHISKEY":
+                view.setBackgroundColor(ContextCompat.getColor(context, R.color.whiskeyColor));
                 break;
         }
 
@@ -253,6 +267,26 @@ public class MyCustomExpandableAdapter extends BaseExpandableListAdapter {
             case "DESSERTS":
                 convertView.setBackgroundColor(ContextCompat.getColor(context, R.color.dessertsColor));
                 imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.desserts));
+                break;
+            case "SOFT DRINKS":
+                convertView.setBackgroundColor(ContextCompat.getColor(context, R.color.softdrinksColor));
+                imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.softdrinks));
+                break;
+            case "COCKTAILS":
+                convertView.setBackgroundColor(ContextCompat.getColor(context, R.color.cocktailColor));
+                imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.cocktails));
+                break;
+            case "BEER":
+                convertView.setBackgroundColor(ContextCompat.getColor(context, R.color.beerColor));
+                imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.beers));
+                break;
+            case "WINE":
+                convertView.setBackgroundColor(ContextCompat.getColor(context, R.color.wineColor));
+                imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.wines));
+                break;
+            case "WHISKEY":
+                convertView.setBackgroundColor(ContextCompat.getColor(context, R.color.whiskeyColor));
+                imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.whiskeys));
                 break;
         }
 

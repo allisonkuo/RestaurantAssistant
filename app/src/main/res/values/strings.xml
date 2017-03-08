@@ -19,7 +19,6 @@
         <item>SANDWICHES</item>
         <item>DESSERTS</item>
     </string-array>
-
     <string-array name="appetizers">
         <item>Cheese Sticks</item>
         <item>Mini Corn Dogs</item>
@@ -51,6 +50,54 @@
         <item>Ice Cream</item>
         <item>Banana Cream Pie</item>
         <item>Tiramisu</item>
+    </string-array>
+
+    <string-array name="drink_categories">
+        <item>SOFT DRINKS</item>
+        <item>COCKTAILS</item>
+        <item>BEER</item>
+        <item>WINE</item>
+        <item>WHISKEY</item>
+    </string-array>
+    <string-array name="soft_drinks">
+        <item>Coke</item>
+        <item>Diet Coke</item>
+        <item>Sprite</item>
+        <item>Root Beer</item>
+        <item>Iced Tea</item>
+    </string-array>
+    <string-array name="cocktails">
+        <item>Appletini</item>
+        <item>Hawaiian Sunset</item>
+        <item>Dark Side of the Moon</item>
+        <item>Baja Breeze</item>
+        <item>French Negroni</item>
+    </string-array>
+    <string-array name="beer">
+        <item>Budweiser</item>
+        <item>Bud Light</item>
+        <item>Corona</item>
+        <item>Shock Top</item>
+        <item>Blue Moon</item>
+        <item>Lagunitas IPA</item>
+        <item>Stella Artois</item>
+    </string-array>
+    <string-array name="wine">
+        <item>Ruffino Prosecco Veneto</item>
+        <item>Rosatello Rose, Italy</item>
+        <item>Ruffino Lumina Pinot Grigio, Italy</item>
+        <item>Nobilo Suavignon Blanc</item>
+        <item>Franciscan Chardonnay</item>
+        <item>Hogue Merlot</item>
+        <item>Dreaming Tree Pinot Noir</item>
+    </string-array>
+    <string-array name="whiskey">
+        <item>Jack Daniels</item>
+        <item>Angel\'s Envy Rye</item>
+        <item>Lock Stock &amp; Smoking Barrel</item>
+        <item>Jameson</item>
+        <item>Pappy Van Winkle</item>
+        <item>Johnny Walker</item>
     </string-array>
 
 </resources>

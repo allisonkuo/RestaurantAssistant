@@ -76,9 +76,15 @@ public class MenuHome extends AppCompatActivity {
     }
 
 
-    /** Called when the user clicks the food menu button */
+    /** called when the user clicks the food menu button */
     public void openMenu(View view) {
         Intent intent = new Intent(this, FoodMenuActivity.class);
+        startActivity(intent);
+    }
+
+    /** called when the user click the drink menu button */
+    public void openDrinks(View view) {
+        Intent intent = new Intent(this, DrinkMenuActivity.class);
         startActivity(intent);
     }
 

@@ -109,7 +109,7 @@ public class receptAdapter extends BaseAdapter implements ListAdapter {
             int quantity = 1;
             try {
                 price = prices.getString(item_name);
-                if (foods.has(item_name))
+                if (foods != null && foods.has(item_name))
                     quantity = foods.getInt(item_name);
                 else
                     quantity = drinks.getInt(item_name);

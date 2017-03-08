@@ -35,6 +35,7 @@
         android:background="@null"
         android:scaleType="fitCenter"
         android:contentDescription="@string/button_drinks"
+        android:onClick="openDrinks"
         style="?android:attr/borderlessButtonStyle" />
 
     <ImageButton
