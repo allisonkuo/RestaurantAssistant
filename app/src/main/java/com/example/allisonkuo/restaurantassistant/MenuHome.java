@@ -47,12 +47,10 @@ public class MenuHome extends AppCompatActivity {
         {
             // ONLY PART YOU HAVE TO CHANGE
             // template: result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/SCRIPT","KEY1","VALUE1","KEY2", "VALUE2",...).get();
-            if(this.waiter_called == false)
-            {
+            if(!this.waiter_called) {
                 result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/callWaiter.php","table","3").get();
             }
-            else
-            {
+            else {
                 result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/resolveCallWaiter.php","table","3").get();
             }
 
@@ -62,30 +60,27 @@ public class MenuHome extends AppCompatActivity {
             e.printStackTrace();
         }
         // server call's response is saved into result
-        if(result != "")
+        if(!result.equals(""))
             Log.v("server response: ", result);
 
-        if(result.equals("success") && waiter_called == false)
-        {
+        if(result.equals("success") && !waiter_called) {
             ImageButton waiterImage = (ImageButton) view.findViewById(R.id.button_waiter);
-            waiterImage.setImageResource(R.drawable.button_waiter_called);
+            waiterImage.setImageResource(R.drawable.button_waiter);
 
             Toast toast = Toast.makeText(MenuHome.this, "Waiter is on the way", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.BOTTOM, 0,100);
             toast.show();
             waiter_called = true;
         }
-        else if(result.equals("success") && waiter_called == true)
-        {
+        else if(result.equals("success") && waiter_called) {
             ImageButton waiterImage = (ImageButton) view.findViewById(R.id.button_waiter);
-            waiterImage.setImageResource(R.drawable.button_waiter);
+            waiterImage.setImageResource(R.drawable.button_waiter_empty);
             Toast toast = Toast.makeText(MenuHome.this, "Waiter request cancelled", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.BOTTOM, 0,100);
             toast.show();
             waiter_called = false;
         }
-        else
-        {
+        else {
             Toast.makeText(MenuHome.this, "Error", Toast.LENGTH_SHORT).show();
         }
     }
