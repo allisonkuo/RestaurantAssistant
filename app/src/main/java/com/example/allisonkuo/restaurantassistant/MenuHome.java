@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,8 +32,46 @@ public class MenuHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_home);
-
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.activity_food_menu_drawer, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.reset_table) {
+            String result = "";
+            serverCall task = new serverCall();
+            try
+            {
+                // ONLY PART YOU HAVE TO CHANGE
+                // template: result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/SCRIPT","KEY1","VALUE1","KEY2", "VALUE2",...).get();
+                result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/resetTable.php","table","3").get();
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+            // server call's response is saved into result
+            Log.v("server response: ", result);
+            Toast toast = Toast.makeText(MenuHome.this, "Table Reset", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.BOTTOM, 0,100);
+            toast.show();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
     /** Called when the user clicks the food menu button */
     public void openMenu(View view) {
