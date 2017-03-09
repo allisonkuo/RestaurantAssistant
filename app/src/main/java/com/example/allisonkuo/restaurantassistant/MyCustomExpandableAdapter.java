@@ -77,8 +77,8 @@ public class MyCustomExpandableAdapter extends BaseExpandableListAdapter {
         TextView description = (TextView) view.findViewById(R.id.description);
         price.setTypeface(font);
         price.setText("$12.00");
-        //description.setTypeface(fontmed);
-        description.setText(childText);
+        //description.setTypeface(font);
+        //description.setText(childText);
 
         // set color of each section
         switch (listDataHeader[groupPosition]) {
@@ -166,6 +166,22 @@ public class MyCustomExpandableAdapter extends BaseExpandableListAdapter {
                 break;
             case "Tiramisu":
                 break;
+            case "Appletini":
+                description.setText("Smirnoff Apple Vodka, Apple Pucker, splash of Sierra Mist");
+                break;
+            case "Hawaiian Sunset":
+                description.setText("vodka, hibiscus, lime, raspberry");
+                break;
+            case "Dark Side of the Moon":
+                description.setText("tequila, lime, blackberry, basil");
+                break;
+            case "Baja Breeze":
+                description.setText("tequila, passion fruit, lime, jalapeno mango IPA");
+                break;
+            case "French Negroni":
+                description.setText("gin, sweet vermouth, green chartreuse, campari");
+                break;
+
         }
 
         // handle buttons and add onClickListeners

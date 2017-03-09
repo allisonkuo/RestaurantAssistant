@@ -102,8 +102,10 @@ public class receptAdapter extends BaseAdapter implements ListAdapter {
 
         else
         {
+            Typeface font = Typeface.createFromAsset(context.getAssets(), "Lato-Regular.ttf");
+            Typeface fontlight = Typeface.createFromAsset(context.getAssets(), "Lato-Light.ttf");
             TextView listItemText = (TextView) view.findViewById(R.id.list_item_string);
-            listItemText.setTypeface(null, Typeface.BOLD);
+            listItemText.setTypeface(fontlight);
             listItemText.setText("   " + item_name);
             String price = "0.00";
             int quantity = 1;
@@ -119,7 +121,7 @@ public class receptAdapter extends BaseAdapter implements ListAdapter {
 
             final TextView price_text = (TextView) view.findViewById(R.id.price);
 
-            price_text.setTypeface(null, Typeface.NORMAL);
+            price_text.setTypeface(font);
             price_text.setText(String.format("$%s x %s", price, quantity));
 
         }
