@@ -1,8 +1,10 @@
 package com.example.allisonkuo.restaurantassistant;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Layout;
@@ -49,28 +51,50 @@ public class MenuHome extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.reset_table) {
-            String result = "";
-            serverCall task = new serverCall();
-            try
-            {
-                // ONLY PART YOU HAVE TO CHANGE
-                // template: result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/SCRIPT","KEY1","VALUE1","KEY2", "VALUE2",...).get();
-                result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/resetTable.php","table","3").get();
+            // create an alert to confirm order
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MenuHome.this);
+            alertDialogBuilder.setTitle("CONFIRM");
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-            // server call's response is saved into result
-            Log.v("server response: ", result);
-            Toast toast = Toast.makeText(MenuHome.this, "Table Reset", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.BOTTOM, 0,100);
-            toast.show();
-            ImageButton waiterImage = (ImageButton) this.findViewById(R.id.button_waiter);
-            waiterImage.setImageResource(R.drawable.button_waiter_empty);
-            waiter_called = false;
+            // set dialog message
+            alertDialogBuilder
+                    .setMessage("Are you sure you want to reset?")
+                    .setCancelable(true)
+                    .setPositiveButton("reset", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            String result = "";
+
+                            serverCall task = new serverCall();
+                            try {
+                                // ONLY PART YOU HAVE TO CHANGE
+                                // template: result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/SCRIPT","KEY1","VALUE1","KEY2", "VALUE2",...).get();
+                                result = task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/restaurant/resetTable.php", "table", "3").get();
+
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            } catch (ExecutionException e) {
+                                e.printStackTrace();
+                            }
+                            // server call's response is saved into result
+                            Log.v("server response: ", result);
+                            Toast toast = Toast.makeText(MenuHome.this, "Table Reset", Toast.LENGTH_SHORT);
+                            toast.setGravity(Gravity.BOTTOM, 0, 100);
+                            toast.show();
+                            ImageButton waiterImage = (ImageButton) MenuHome.this.findViewById(R.id.button_waiter);
+                            waiterImage.setImageResource(R.drawable.button_waiter_empty);
+                            waiter_called = false;
+                        }
+                    })
+                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            // create alert dialog and show it
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
         }
+
 
         return super.onOptionsItemSelected(item);
     }
