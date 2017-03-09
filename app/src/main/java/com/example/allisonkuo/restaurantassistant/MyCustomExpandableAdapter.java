@@ -76,7 +76,7 @@ public class MyCustomExpandableAdapter extends BaseExpandableListAdapter {
         TextView price = (TextView) view.findViewById(R.id.price);
         TextView description = (TextView) view.findViewById(R.id.description);
         price.setTypeface(font);
-        price.setText("$12.00");
+        //price.setText("$12.00");
         //description.setTypeface(font);
         //description.setText(childText);
 
@@ -119,68 +119,193 @@ public class MyCustomExpandableAdapter extends BaseExpandableListAdapter {
 
         switch(childText) {
             case "Cheese Sticks":
+                description.setText("fried mozarella sticks with marinara sauce");
+                price.setText("$7.50");
                 break;
             case "Mini Corn Dogs":
+                description.setText("served with honey mustard and hot mustard");
+                price.setText("$7.50");
                 break;
             case "Chips and Salsa":
+                description.setText("served with pico de gallo, spicy salsa verde, guacamole");
+                price.setText("$5.95");
                 break;
             case "Jalapeno Poppers":
+                description.setText("fried bacon-wrapped jalapenos stuffed with cream cheese");
+                price.setText("$6.95");
                 break;
             case "Fried Mushrooms":
+                description.setText("stuffed with garlic cream cheese");
+                price.setText("$8.95");
                 break;
             case "Toothpicks":
+                description.setText("fried jalapenos, onion strips");
+                price.setText("$6.95");
                 break;
             case "Hot Wings":
+                description.setText("cajun or lemon pepper");
+                price.setText("$12.95");
                 break;
             case "Cheese Fries":
+                description.setText("homemade fries, house cheese sauce, grilled onions");
+                price.setText("$8.95");
                 break;
             case "Fried Pickle Spears":
+                description.setText("battered and fried pickles");
+                price.setText("$6.95");
                 break;
             case "Classic Cheeseburger":
+                description.setText("cheddar, bacon, lettuce, tomato, grilled onions, house sauce");
+                price.setText("$8.95");
                 break;
             case "Sunny Side Burger":
+                description.setText("parmesan, sunny side up egg, bacon, arugula, garlic aioli");
+                price.setText("$11.95");
                 break;
             case "Short Rib Sliders":
+                description.setText("briased beef short rib, gruyere");
+                price.setText("$11.95");
                 break;
             case "Grilled Chicken":
+                description.setText("grilled chicken breast, arugula, tomato, pickles, house sauce");
+                price.setText("$9.95");
                 break;
             case "Buffalo Chicken":
+                description.setText("fried chicken breast, lettuce, tomato, buffalo wing sauce");
+                price.setText("$10.95");
                 break;
             case "Fried Chicken":
+                description.setText("fried chicken breast, roasted red peppers, lettuce, house sauce");
+                price.setText("$10.95");
                 break;
             case "BLT":
+                description.setText("bacon, lettuce, tomato, chipotle aioli");
+                price.setText("$9.95");
                 break;
             case "Club":
+                description.setText("sliced turkey breast, glazed ham, lettuce, tomato, pepper jack");
+                price.setText("$9.95");
                 break;
             case "Philly Cheese Steak":
+                description.setText("beef ribeye, grilled onions, roasted red peppers, monterey jack");
+                price.setText("$10.95");
                 break;
             case "Turkey Melt":
+                description.setText("sliced turkey breast, tomato, monterey jack, chipotle aioli");
+                price.setText("$8.95");
                 break;
             case "Chocolate Cake":
+                description.setText("");
+                price.setText("$4.95");
                 break;
             case "Cheese Cake":
+                description.setText("");
+                price.setText("$3.95");
                 break;
             case "Ice Cream":
+                description.setText("");
+                price.setText("$2.95");
                 break;
             case "Banana Cream Pie":
+                description.setText("");
+                price.setText("$3.95");
                 break;
             case "Tiramisu":
+                description.setText("");
+                price.setText("$3.95");
+                break;
+            case "Coke":
+                description.setText("");
+                price.setText("$2.50");
+                break;
+            case "Diet Coke":
+                description.setText("");
+                price.setText("$2.50");
+                break;
+            case "Sprite":
+                description.setText("");
+                price.setText("$2.50");
+                break;
+            case "Root Beer":
+                description.setText("");
+                price.setText("$2.50");
+                break;
+            case "Iced Tea":
+                description.setText("");
+                price.setText("$2.50");
                 break;
             case "Appletini":
-                description.setText("Smirnoff Apple Vodka, Apple Pucker, splash of Sierra Mist");
+                description.setText("apple schnapps, Smirnoff apple vodka, splash of Sierra Mist");
+                price.setText("$12.00");
                 break;
             case "Hawaiian Sunset":
                 description.setText("vodka, hibiscus, lime, raspberry");
+                price.setText("$12.00");
                 break;
             case "Dark Side of the Moon":
                 description.setText("tequila, lime, blackberry, basil");
+                price.setText("$13.00");
                 break;
             case "Baja Breeze":
                 description.setText("tequila, passion fruit, lime, jalapeno mango IPA");
+                price.setText("$13.00");
                 break;
             case "French Negroni":
                 description.setText("gin, sweet vermouth, green chartreuse, campari");
+                price.setText("$14.00");
                 break;
+            case "Ruffino Prosecco Veneto":
+                description.setText("");
+                price.setText("$18.00");
+                break;
+            case "Rosatello Rose, Italy":
+                description.setText("");
+                price.setText("$28.00");
+                break;
+            case "Ruffino Lumina Pinot Grigio, Italy":
+                description.setText("");
+                price.setText("$28.00");
+                break;
+            case "Nobilo Suavignon Blanc":
+                description.setText("");
+                price.setText("$32.00");
+                break;
+            case "Franciscan Chardonnay":
+                description.setText("");
+                price.setText("$39.00");
+                break;
+            case "Hogue Merlot":
+                description.setText("");
+                price.setText("$28.00");
+                break;
+            case "Dreaming Tree Pinot Noir":
+                description.setText("");
+                price.setText("$32.00");
+                break;
+            case "Jack Daniels":
+                description.setText("");
+                price.setText("$10.00");
+                break;
+            case "Angel's Envy Rye":
+                description.setText("");
+                price.setText("$18.00");
+                break;
+            case "Lock Stock & Smoking Barrel":
+                description.setText("");
+                price.setText("$20.00");
+                break;
+            case "Jameson":
+                description.setText("");
+                price.setText("$10.00");
+                break;
+            case "Pappy Van Winkle":
+                description.setText("");
+                price.setText("$38.00");
+                break;
+            case "Johnny Walker":
+                description.setText("");
+                price.setText("$12.00");
+
 
         }
 
