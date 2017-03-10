@@ -7,14 +7,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.List;
+
+import static android.R.id.list;
 
 /**
 * Created by allisonkuo on 3/7/17.
@@ -54,8 +58,8 @@ public class MyCustomExpandableAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(final int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
-
         View view = convertView;
+
         final String childText = (String) getChild(groupPosition, childPosition);
 
         if (view == null) {
@@ -307,6 +311,10 @@ public class MyCustomExpandableAdapter extends BaseExpandableListAdapter {
                 price.setText("$12.00");
 
 
+        }
+        // set bottom padding if last item
+        if(childPosition == listDataChild.get(this.listDataHeader[groupPosition]).size() - 1)
+        {
         }
 
         // handle buttons and add onClickListeners
