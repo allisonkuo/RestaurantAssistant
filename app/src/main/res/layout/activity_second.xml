@@ -12,26 +12,38 @@
         android:layout_height="0dp"
         android:layout_centerInParent="true" />
 
-    <Button
-        android:id="@+id/button_player_1"
-        style="@android:style/Widget.Material.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/anchor"
-        android:layout_centerVertical="true"
-        android:text="@string/b_player_1"
-        tools:layout_editor_absoluteX="251dp"
-        tools:layout_editor_absoluteY="118dp"
-        tools:text="@string/b_player_1" />
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/button_player_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button_player_1"
-        android:layout_alignStart="@+id/anchor"
-        android:text="@string/b_player_2"
-        tools:text="@string/b_player_2" />
+        <ImageButton
+            android:id="@+id/button_player_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_margin="50dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/player1"
+            android:contentDescription="@string/button_player1"
+            android:background="@null"
+            style="?android:attr/borderlessButtonStyle" />
+
+        <ImageButton
+            android:id="@+id/button_player_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_margin="50dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/player2"
+            android:contentDescription="@string/button_player2"
+            android:background="@null"
+            style="?android:attr/borderlessButtonStyle" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/button_fold"

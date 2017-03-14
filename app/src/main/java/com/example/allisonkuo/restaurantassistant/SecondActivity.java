@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,8 +28,8 @@ public class SecondActivity extends AppCompatActivity {
     private Hand hand1;
     private Hand hand2;
     //UI variables
-    Button bPlayer1;
-    Button bPlayer2;
+    ImageButton bPlayer1;
+    ImageButton bPlayer2;
     Button bCheckCall;
     Button bFold;
     Button bRaise;
@@ -237,8 +238,8 @@ public class SecondActivity extends AppCompatActivity {
         }, delay);
     }
     private void initUI(){
-        bPlayer1 = (Button) findViewById(R.id.button_player_1);
-        bPlayer2 = (Button) findViewById(R.id.button_player_2);
+        bPlayer1 = (ImageButton) findViewById(R.id.button_player_1);
+        bPlayer2 = (ImageButton) findViewById(R.id.button_player_2);
         bCheckCall = (Button) findViewById(R.id.button_call_check);
         bFold = (Button) findViewById(R.id.button_fold);
         bRaise = (Button) findViewById(R.id.button_raise);
