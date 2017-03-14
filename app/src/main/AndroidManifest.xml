@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="HardcodedDebugMode">
-        <activity android:name=".MenuHome">
+        <activity android:name=".StartingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,8 +24,11 @@
         </activity>
         <activity android:name=".FoodMenuActivity" />
         <activity android:name=".receptActivity" />
-        <activity android:name=".DrinkMenuActivitiy" />
-        <activity android:name=".DrinkMenuActivity"></activity>
+        <activity android:name=".DrinkMenuActivity" />
+        <activity android:name=".MenuHome" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SecondActivity" />
+        <activity android:name=".ThirdActivity" />
     </application>
 
 </manifest>

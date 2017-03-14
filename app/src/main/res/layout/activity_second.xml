@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="poker.app.SecondActivity">
+
+    <View
+        android:id="@+id/anchor"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true" />
+
+    <Button
+        android:id="@+id/button_player_1"
+        style="@android:style/Widget.Material.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/anchor"
+        android:layout_centerVertical="true"
+        android:text="@string/b_player_1"
+        tools:layout_editor_absoluteX="251dp"
+        tools:layout_editor_absoluteY="118dp"
+        tools:text="@string/b_player_1" />
+
+    <Button
+        android:id="@+id/button_player_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button_player_1"
+        android:layout_alignStart="@+id/anchor"
+        android:text="@string/b_player_2"
+        tools:text="@string/b_player_2" />
+
+    <Button
+        android:id="@+id/button_fold"
+        style="@android:style/Widget.Material.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/b_fold"
+        tools:layout_editor_absoluteX="488dp"
+        tools:layout_editor_absoluteY="223dp"
+        tools:text="@string/b_fold"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/button_raise"
+        style="@android:style/Widget.Material.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/b_raise"
+        tools:layout_editor_absoluteX="488dp"
+        tools:layout_editor_absoluteY="175dp"
+        tools:text="@string/b_raise"
+        android:layout_above="@+id/button_call_check"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/button_call_check"
+        style="@android:style/Widget.Material.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/b_call"
+        tools:layout_editor_absoluteX="488dp"
+        tools:layout_editor_absoluteY="127dp"
+        tools:text="@string/b_call"
+        android:layout_above="@+id/button_fold"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:id="@+id/t_card1"
+        android:layout_width="89dp"
+        android:layout_height="125dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/ccard_back"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/t_card2" />
+    <ImageView
+        android:id="@+id/t_card2"
+        android:layout_width="89dp"
+        android:layout_height="125dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/ccard_back"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/t_card3" />
+    <ImageView
+        android:id="@+id/t_card3"
+        android:layout_width="89dp"
+        android:layout_height="125dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/ccard_back"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:id="@+id/t_card4"
+        android:layout_width="89dp"
+        android:layout_height="125dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/ccard_back"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/t_card3" />
+    <ImageView
+        android:id="@+id/t_card5"
+        android:layout_width="89dp"
+        android:layout_height="125dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/ccard_back"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/t_card4" />
+    <ImageView
+        android:id="@+id/p_card1"
+        android:layout_width="89dp"
+        android:layout_height="125dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/ccard_back"
+        android:layout_marginRight="15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/anchor" />
+
+    <ImageView
+        android:id="@+id/p_card2"
+        android:layout_width="89dp"
+        android:layout_height="125dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/ccard_back"
+        android:layout_marginLeft="15dp"
+        android:layout_alignTop="@+id/p_card1"
+        android:layout_alignStart="@+id/anchor" />
+
+    <TextView
+        android:id="@+id/text_turn_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Player"
+        android:layout_marginLeft="5dp"
+        android:layout_alignBaseline="@+id/text_turn"
+        android:layout_alignBottom="@+id/text_turn"
+        android:layout_alignStart="@+id/t_card1" />
+
+    <TextView
+        android:id="@+id/text_opponent_bet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/opponent_bet"
+        tools:text="@string/opponent_bet"
+        android:layout_above="@+id/button_fold"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/text_current_bet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/current_bet"
+        tools:text="@string/current_bet"
+        android:layout_below="@+id/text_opponent_bet"
+        android:layout_toStartOf="@+id/text_opponent_bet_value" />
+
+    <TextView
+        android:id="@+id/text_opponent_bet_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/text_current_bet_value"
+        android:layout_marginLeft="5dp"
+        android:layout_toEndOf="@+id/text_opponent_bet" />
+
+    <TextView
+        android:id="@+id/text_current_bet_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/text_opponent_bet_value"
+        android:layout_below="@+id/text_opponent_bet" />
+
+    <TextView
+        android:id="@+id/text_wallet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/wallet"
+        tools:text="@string/wallet"
+        android:layout_below="@+id/text_current_bet"
+        android:layout_alignEnd="@+id/text_current_bet" />
+
+    <TextView
+        android:id="@+id/text_wallet_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/text_current_bet_value"
+        android:layout_below="@+id/text_current_bet_value" />
+
+    <TextView
+        android:id="@+id/text_turn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/current_turn"
+        tools:text="@string/current_turn"
+        android:layout_alignTop="@+id/p_card1"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/text_pot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/text_opponent_bet"
+        android:layout_toStartOf="@+id/text_opponent_bet_value"
+        android:text="@string/total_pot"
+        tools:text="@string/total_pot" />
+
+    <TextView
+        android:id="@+id/text_pot_val"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/text_opponent_bet_value"
+        android:layout_alignStart="@+id/text_opponent_bet_value" />
+
+    <TextView
+        android:id="@+id/text_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
+    <Button
+        android:id="@+id/button_raise_high"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/button_raise"
+        android:layout_toStartOf="@+id/button_raise"
+        android:text="@string/b_raise_high"
+        tools:text="@string/b_raise_high" />
+
+    <Button
+        android:id="@+id/button_restart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/text_message"
+        android:layout_centerHorizontal="true"
+        android:text="@string/new_game"
+        tools:text="@string/new_game" />
+
+</RelativeLayout>
