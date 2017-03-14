@@ -6,12 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.util.Log;
+import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button button = (Button) findViewById(R.id.welcome_button_wifi);
+        ImageButton button = (ImageButton) findViewById(R.id.welcome_button_wifi);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 */
             }
         });
-        Button blueButt = (Button) findViewById(R.id.welcome_button_bluetooth);
+        ImageButton blueButt = (ImageButton) findViewById(R.id.welcome_button_bluetooth);
         blueButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
