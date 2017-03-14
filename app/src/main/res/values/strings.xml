@@ -74,9 +74,9 @@
         <item>French Negroni</item>
     </string-array>
     <string-array name="beer">
+        <item>Corona</item>
         <item>Budweiser</item>
         <item>Bud Light</item>
-        <item>Corona</item>
         <item>Shock Top</item>
         <item>Blue Moon</item>
         <item>Lagunitas IPA</item>

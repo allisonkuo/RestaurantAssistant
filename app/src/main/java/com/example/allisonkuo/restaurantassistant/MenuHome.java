@@ -53,7 +53,7 @@ public class MenuHome extends AppCompatActivity {
         if (id == R.id.reset_table) {
             // create an alert to confirm order
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MenuHome.this);
-            alertDialogBuilder.setTitle("CONFIRM");
+            alertDialogBuilder.setTitle("CONFIRM RESET");
 
             // set dialog message
             alertDialogBuilder

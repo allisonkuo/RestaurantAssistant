@@ -258,6 +258,34 @@ public class MyCustomExpandableAdapter extends BaseExpandableListAdapter {
                 description.setText("gin, sweet vermouth, green chartreuse, campari");
                 price.setText("$14.00");
                 break;
+            case "Budweiser":
+                description.setText("");
+                price.setText("$4.50");
+                break;
+            case "Bud Light":
+                description.setText("");
+                price.setText("$4.50");
+                break;
+            case "Corona":
+                description.setText("beer of the month");
+                price.setText("$4.00");
+                break;
+            case "Shock Top":
+                description.setText("");
+                price.setText("$5.50");
+                break;
+            case "Blue Moon":
+                description.setText("");
+                price.setText("$5.50");
+                break;
+            case "Lagunitas IPA":
+                description.setText("");
+                price.setText("$5.50");
+                break;
+            case "Stella Artois":
+                description.setText("");
+                price.setText("$5.00");
+                break;
             case "Ruffino Prosecco Veneto":
                 description.setText("");
                 price.setText("$18.00");

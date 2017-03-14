@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/description"
-        android:layout_width="400dp"
+        android:layout_width="440dp"
         android:maxLines="1"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit ="marquee_forever"
