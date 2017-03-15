@@ -192,7 +192,6 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
 
         btnStartConnection = (Button) findViewById(R.id.btnStartConnection);
         btnSend = (Button) findViewById(R.id.btnSend);
-        etSend = (EditText) findViewById(R.id.editText);
 
         //Broadcasts when bond state changes (ie:pairing)
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
@@ -526,12 +525,9 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
                         }
                     } else if (currPlayer.getCurrPlayerID() == playerId) {
                         bCheckCall.setEnabled(true);
-                        //bRaise.setEnabled(true);
-                        //bRaiseH.setEnabled(true);
-                        //bFold.setEnabled(true);
-                        bRaise.setEnabled(false);
-                        bRaiseH.setEnabled(false);
-                        bFold.setEnabled(false);
+                        bRaise.setEnabled(true);
+                        bRaiseH.setEnabled(true);
+                        bFold.setEnabled(true);
                         if (playerId == 0) {
                             turnTextVal.setText("Player 1");
                         } else if (playerId == 1) {
@@ -983,6 +979,11 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
             currPlayer.incBettingRound();
             DataSync= currPlayer.GetBluetoothArray();
             EndTurnSend();
+
+            String result="";
+            result = ConvertArrayToString(DataSync);
+            mBluetoothConnection.SetIncomeString(result);
+            ReceivedTurn=0;
             ReceivedTurn=0;
         }
     }

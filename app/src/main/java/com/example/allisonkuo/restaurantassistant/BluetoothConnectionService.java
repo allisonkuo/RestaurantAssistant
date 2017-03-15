@@ -261,7 +261,10 @@ public class BluetoothConnectionService {
                 }
             }
         }
-
+        public void SetMSG(String Replacement)
+        {
+            incomingMessage=Replacement;
+        }
         public String returnIncomingMsg()
         {
             return incomingMessage;
@@ -294,7 +297,10 @@ public class BluetoothConnectionService {
         mConnectedThread = new ConnectedThread(mmSocket);
         mConnectedThread.start();
     }
-
+    public void SetIncomeString(String MSG)
+    {
+        mConnectedThread.SetMSG(MSG);
+    }
     /**
      * Write to the ConnectedThread in an unsynchronized manner
      *
