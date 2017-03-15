@@ -4,11 +4,12 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ImageButton;
 
 public class SecondActivity extends AppCompatActivity {
     //reg variables
@@ -28,6 +29,7 @@ public class SecondActivity extends AppCompatActivity {
     private Deck d;
     private Hand hand1;
     private Hand hand2;
+    private int gameOver;
     //UI variables
     ImageButton bPlayer1;
     ImageButton bPlayer2;
@@ -61,6 +63,7 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         //hide buttons till start is pressed
+        //Player.giveTurnToPlayer(0);
         initUI();
         firstLoop = 1;
         //initialize state variables
@@ -71,13 +74,14 @@ public class SecondActivity extends AppCompatActivity {
         shownTurn = 0;
         shownRiver = 0;
         calcHand = 0;
+        gameOver = 0;
         //default setup, if player1 we won't do anything different,
         //if player 2, we'll have to overwrite the hands
         d = new Deck();
         hand1 = new Hand(d);
         hand2 = new Hand(d);
-        p1 = new Player(0, 10000);
-        p2 = new Player(1, 10000);
+        p1 = new Player(0, Player.getServBalance(0));
+        p2 = new Player(1, Player.getServBalance(1));
         playerId = -1;
         //index the betting round we're on, value is 0 or 1 depending on if we made any actions yet
         turnCheck[0] = 0;
@@ -127,6 +131,7 @@ public class SecondActivity extends AppCompatActivity {
         bRestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                firstLoop = 1;
                 finish();
                 startActivity(getIntent());
             }
@@ -149,10 +154,13 @@ public class SecondActivity extends AppCompatActivity {
         h.postDelayed(new Runnable(){
         public void run(){
             //give to turn to player 1 on first loop
+
             if(firstLoop == 1){
                 p1.giveTurnToPlayer(0);
                 firstLoop = 0;
             }
+
+
             //set buttons
             if (p1.getCurrPlayerID() != playerId) {
                 //if not player's turn, disable buttons
@@ -176,6 +184,7 @@ public class SecondActivity extends AppCompatActivity {
                     turnTextVal.setText("Player 2");
                 }
             }
+
             //only advance if it is the current player's turn
             //see if we have to change check/call
 
@@ -203,35 +212,52 @@ public class SecondActivity extends AppCompatActivity {
                     showRiver();
                 }
 
+                //check for fold
+                if(currPlayer.getCurrPlayerID()!= playerId && gameOver == 0){
+                    Card[] oppCards;
+                    if(playerId == 0) {
+                        oppCards = p2.getCards(1);
+                    } else{
+                        oppCards = p1.getCards(0);
+                    }
+                    if(oppCards[0].getRank() == -1)
+                    {
+                        //other player has folded
+                        //you win
+                        Log.d("Pot Before: ", Integer.toString(p1.getPot()));
+                        onWin(p1.getPot());
+                    }
+                }
+
                 //we finished betting, calculate hand
                 if(currPlayer.getCurrBettingRound() == 4){
                     //if over, check if win
+                    gameOver = 1;
                     int res = checkWin();
                     //if lose
                     if(res == -1){
                         //message.setText("You Lost!");
                        //.d("iflose", " you lost");
+                        Log.d("Pot Before: ", Integer.toString(p1.getPot()));
                         onLose();
                     } else if(res == 0){
                         //message.setText("You Tied!");
                        // Log.d("iftie", " you tied");
+                        Log.d("Pot Before: ", Integer.toString(p1.getPot()));
                          onTie();
                     } else if(res == 1){
                         //message.setText("You Won!");
                         //Log.d("ifwin", " you won");
-                        onWin();
+                        Log.d("Pot Before: ", Integer.toString(p1.getPot()));
+                        onWin(p1.getPot());
                     }
                     try {
                         Thread.sleep(2000);
-                    } catch (InterruptedException e)
-                    {
+                    } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    currPlayer.resetRound();
                     bRestart.setVisibility(View.VISIBLE);
-
                 }
-
             }
 
             h.postDelayed(this, delay);
@@ -330,6 +356,7 @@ public class SecondActivity extends AppCompatActivity {
             pCard1.setImageResource(imageResource1);
             pCard2.setImageResource(imageResource2);
         } else if( playerId == 1){
+            Log.d("Curr Player 1: ", Integer.toString(Player.getCurrPlayerID()));
             String p2Card1String = p2.getHand().getPlayerHand()[0].imageString();
             String p2Card2String = p2.getHand().getPlayerHand()[1].imageString();
             ImageView pCard1 = (ImageView) findViewById(R.id.p_card1);
@@ -340,6 +367,7 @@ public class SecondActivity extends AppCompatActivity {
             int imageResource2 = getResources().getIdentifier(pCard2uri, null, getPackageName());
             pCard1.setImageResource(imageResource1);
             pCard2.setImageResource(imageResource2);
+            Log.d("Curr Player 1: ", Integer.toString(Player.getCurrPlayerID()));
         }
     }
     public void showFlop(){
@@ -361,6 +389,7 @@ public class SecondActivity extends AppCompatActivity {
             tCard3.setImageResource(imageResource3);
             shownFlop = 1;
             currPlayer.newBettingRound();
+            oppBetVal.setText(Integer.toString(p2.getBet()-p1.getCurrBetInRound()));
         }
     }
     public void showTurn(){
@@ -372,6 +401,7 @@ public class SecondActivity extends AppCompatActivity {
             tCard4.setImageResource(imageResource4);
             shownTurn = 1;
             currPlayer.newBettingRound();
+            oppBetVal.setText(Integer.toString(p2.getBet()-p1.getCurrBetInRound()));
         }
     }
     public void showRiver(){
@@ -383,6 +413,7 @@ public class SecondActivity extends AppCompatActivity {
             tCard5.setImageResource(imageResource5);
             shownRiver = 1;
             currPlayer.newBettingRound();
+            oppBetVal.setText(Integer.toString(p2.getBet()-p1.getCurrBetInRound()));
         }
     }
     public void onP1Click(){
@@ -422,6 +453,8 @@ public class SecondActivity extends AppCompatActivity {
         //if p1, we keep the stuff init before, upload to server so p2 can access
         p1.resetRound();
         p2.resetRound();
+        Player.giveTurnToPlayer(0);
+
         p1.setHand(hand1);
         p2.setHand(hand2);
         //p1.setHandByID(1, hand2);
@@ -504,10 +537,12 @@ public class SecondActivity extends AppCompatActivity {
         // Bets the amount
         int currBet = curr.getBet();
         int difference = currBet - curr.getCurrBetInRound();
+        Log.d("Difference Raise: ", Integer.toString(difference));
         int sum = difference + amount;
         curr.bet(sum);
         //increase text
         currBetVal.setText(Integer.toString(curr.getCurrBetInGame()));
+        oppBetVal.setText(Integer.toString(p2.getBet()-p1.getCurrBetInRound()));
         //set the turnCheck val
         turnCheck[curr.getCurrBettingRound()] = 1;
         curr.giveTurnToNextPlayer(2);
@@ -527,6 +562,7 @@ public class SecondActivity extends AppCompatActivity {
             curr = p2;
         }
         curr.fold();
+        onLose();
     }
 
     // This is called when the player clicks on the button to check
@@ -561,6 +597,7 @@ public class SecondActivity extends AppCompatActivity {
             p2.newBettingRound();
             curr.giveTurnToPlayer(0);
             curr.incBettingRound();
+            oppBetVal.setText(Integer.toString(p2.getBet()-p1.getCurrBetInRound()));
         }
     }
 
@@ -579,6 +616,7 @@ public class SecondActivity extends AppCompatActivity {
         }
         int currBet = curr.getBet();
         int difference = currBet - curr.getCurrBetInRound();
+        Log.d("Difference Call: ", Integer.toString(difference));
         curr.bet(difference);
 
         /*
@@ -604,6 +642,7 @@ public class SecondActivity extends AppCompatActivity {
             p2.newBettingRound();
             curr.giveTurnToPlayer(0);
             curr.incBettingRound();
+            oppBetVal.setText(Integer.toString(p2.getBet()-p1.getCurrBetInRound()));
         }
     }
 
@@ -628,12 +667,13 @@ public class SecondActivity extends AppCompatActivity {
         }
 
         result = myHand.Compare(otherHand);
+        Log.d("Result: ", Integer.toString(result));
 
         return result;
     }
 
     // Call this if you figure out you won
-    public void onWin()
+    public void onWin(int potVal)
     {
         int currPlayerId = p1.getCurrPlayerID();
 
@@ -643,8 +683,9 @@ public class SecondActivity extends AppCompatActivity {
         }else {
             curr = p2;
         }
-        int potVal = curr.getPot();
+
         int amtBetInGame = curr.getCurrBetInGame();
+        Log.d("Pot After: ", Integer.toString(potVal));
 
         // This part is designed for when your opponent goes all in, but you didn't have enough
         if(amtBetInGame * 2 >= potVal)
@@ -654,6 +695,8 @@ public class SecondActivity extends AppCompatActivity {
 
         //Log.d("win", " you win");
         message.setText("You Win!");
+        walletVal.setText(Integer.toString(currPlayer.getBalance()));
+        Player.setBalance(playerId, currPlayer.getBalance());
         // Give the loser 3 seconds before the server is reset...
         try {
             Thread.sleep(5000);
@@ -661,13 +704,15 @@ public class SecondActivity extends AppCompatActivity {
         {
             e.printStackTrace();
         }
-
+        bRestart.setVisibility(View.VISIBLE);
         // Winner is in charge of resetting the game, since the winner needs some server value before they are reset
         curr.resetRound();
     }
 
     public void onTie()
     {
+
+        bRestart.setVisibility(View.VISIBLE);
         int currPlayerId = p1.getCurrPlayerID();
 
 
@@ -681,6 +726,7 @@ public class SecondActivity extends AppCompatActivity {
         curr.winMoney(amtBetInGame);
         //Log.d("tie", " you tied");
         message.setText("You Tied!");
+        walletVal.setText(Integer.toString(currPlayer.getBalance()));
         // Give the loser 3 seconds before the server is reset...
         try {
             Thread.sleep(5000);
@@ -688,12 +734,15 @@ public class SecondActivity extends AppCompatActivity {
         {
             e.printStackTrace();
         }
+        bRestart.setVisibility(View.VISIBLE);
         // If there's a tie, it doesn't matter who resets the game
         curr.resetRound();
     }
 
     public void onLose()
     {
+
+        bRestart.setVisibility(View.VISIBLE);
         int currPlayerId = p1.getCurrPlayerID();
 
 
@@ -703,6 +752,7 @@ public class SecondActivity extends AppCompatActivity {
         }else {
             curr = p2;
         }
+
         // Covers the case where you went all in (and lost), but the enemy player had less money
         int potVal = curr.getPot();
         int amtBet = curr.getCurrBetInGame();
@@ -710,8 +760,19 @@ public class SecondActivity extends AppCompatActivity {
         if(difference > 0) {
             curr.winMoney(difference);
         }
-        //Log.d("lose", " you lost");
+
+
+        Log.d("balance1", Integer.toString(currPlayer.getBalance()));
         message.setText("You Lose!");
+        Player.setBalance(playerId, currPlayer.getBalance());
+        Log.d("balance2",  Integer.toString(Player.getServBalance(0)));
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+        bRestart.setVisibility(View.VISIBLE);
     }
 
     public boolean checkIfMyTurn()

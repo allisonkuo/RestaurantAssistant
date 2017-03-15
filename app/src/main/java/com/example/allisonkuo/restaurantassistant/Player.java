@@ -1,5 +1,6 @@
 package com.example.allisonkuo.restaurantassistant;
 
+
 import java.util.concurrent.ExecutionException;
 
 import helper.serverCall;
@@ -191,7 +192,7 @@ public class Player {
     }
 
     // Gets the ID of the player whose turn it is
-    public int getCurrPlayerID()
+    public static int getCurrPlayerID()
     {
         String serverResult = "0";
         serverCall task = new serverCall();
@@ -325,7 +326,7 @@ public class Player {
     }
 
     // Would be used on a new betting round to give the turn to the first player
-    public void giveTurnToPlayer(int ID)
+    public static void giveTurnToPlayer(int ID)
     {
         int nextPlayerID = ID;
 
@@ -335,7 +336,7 @@ public class Player {
         try
         {
             String PlayerIDStr = Integer.toString(nextPlayerID);
-            task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/poker/setCurrPlayer.php", "PlayerID", PlayerIDStr).get();
+            task.execute("http://custom-env.hsqkmufkrn.us-west-1.elasticbeanstalk.com/scripts/poker/setCurrPlayer.php", "PlayerID", Integer.toString(ID)).get();
 
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -414,7 +415,7 @@ public class Player {
         }
     }
 
-    public static int getBalance(int id)
+    public static int getServBalance(int id)
     {
         // Gets the balance stored in the server for the specified id
         String serverResult = "0";
