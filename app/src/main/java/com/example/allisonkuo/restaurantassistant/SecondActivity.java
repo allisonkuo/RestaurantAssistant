@@ -679,15 +679,6 @@ public class SecondActivity extends AppCompatActivity {
     // Call this if you figure out you won
     public void onWin(int potVal)
     {
-        int currPlayerId = p1.getCurrPlayerID();
-
-        Player curr;
-        if(currPlayerId == 0) {
-            curr = p1;
-        }else {
-            curr = p2;
-        }
-
         //int amtBetInGame = curr.getCurrBetInGame();
 
         /*
@@ -698,7 +689,7 @@ public class SecondActivity extends AppCompatActivity {
             curr.winMoney(amtBetInGame * 2);
         */
         Log.d("Win Before", Integer.toString(playerId) + " " + Integer.toString(potVal)+ " " + Integer.toString(currPlayer.getBalance()));
-        curr.winMoney(potVal);
+        currPlayer.winMoney(potVal);
         Log.d("Win After", Integer.toString(playerId) + " " + Integer.toString(potVal)+ " " + Integer.toString(currPlayer.getBalance()));
 
         //Log.d("win", " you win");
@@ -751,17 +742,9 @@ public class SecondActivity extends AppCompatActivity {
     {
 
         bRestart.setVisibility(View.VISIBLE);
-        int currPlayerId = Player.getCurrPlayerID();
 
-
-        Player curr;
-        if(currPlayerId == 0) {
-            curr = p1;
-        }else {
-            curr = p2;
-        }
         // Covers the case where you went all in (and lost), but the enemy player had less money
-        int amtBet = curr.getCurrBetInGame();
+        //int amtBet = curr.getCurrBetInGame();
 
         /*
         int difference = potVal - amtBet*2;
