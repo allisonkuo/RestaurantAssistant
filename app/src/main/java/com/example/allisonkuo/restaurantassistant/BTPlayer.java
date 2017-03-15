@@ -108,6 +108,8 @@ public class BTPlayer {
         result = new Card[numCards];
 
         // Note that cardValStr[0] will be the ID
+
+
         String[] cardValStr = BluetoothDataunparsed.split(",");
 
         //dealer cards are located in spots 9-13 of the BTData

@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.ContactsContract;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -489,8 +491,8 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
         bRestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                startActivity(getIntent());
+                //finish();
+                //startActivity(getIntent());
             }
         });
         bCheckCall.setOnClickListener(new View.OnClickListener() {
@@ -721,6 +723,9 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
         totalPotVal.setVisibility(View.GONE);
     }
     private void initGame(){
+        RelativeLayout table = (RelativeLayout) findViewById(R.id.poker_table);
+        table.setBackground(ContextCompat.getDrawable(this, R.drawable.bg4));
+
         if (playerId == 0) {
             String p1Card1String = p1.getHand().getPlayerHand()[0].imageString();
             String p1Card2String = p1.getHand().getPlayerHand()[1].imageString();
@@ -1059,9 +1064,10 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
             otherHand = p1.getHand();
         }
 
-        result = myHand.Compare(otherHand);
+        if(myHand != null && otherHand != null)
+            result = myHand.Compare(otherHand);
 
-        return result;
+        return -1;
     }
 
     // Call this if you figure out you won
@@ -1088,7 +1094,7 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
         }
 
         // Winner is in charge of resetting the game, since the winner needs some server value before they are reset
-        currPlayer.resetRound();
+        //currPlayer.resetRound();
     }
 
     public void onTie()
@@ -1107,7 +1113,7 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
             e.printStackTrace();
         }
         // If there's a tie, it doesn't matter who resets the game
-        currPlayer.resetRound();
+        //currPlayer.resetRound();
     }
 
     public void onLose()

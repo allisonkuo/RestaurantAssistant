@@ -136,14 +136,16 @@ public class Player {
         }
 
         // Note that cardValStr[0] will be the ID
-        String[] cardValStr = serverResult.split(",");
+        if (serverResult != null) {
+            String[] cardValStr = serverResult.split(",");
 
-        for(int i = 0; i < numCards; i++) {
-            int cardVal = Integer.parseInt(cardValStr[i]);
-            if(cardVal != -1){
-                result[i] = new Card(cardVal/13, cardVal % 13);
-            }else{
-                result[i] = new Card(-1,-1);
+            for (int i = 0; i < numCards; i++) {
+                int cardVal = Integer.parseInt(cardValStr[i]);
+                if (cardVal != -1) {
+                    result[i] = new Card(cardVal / 13, cardVal % 13);
+                } else {
+                    result[i] = new Card(-1, -1);
+                }
             }
         }
 
@@ -188,7 +190,9 @@ public class Player {
             e.printStackTrace();
         }
 
-        return Integer.parseInt(serverResult);
+        if(serverResult != null)
+            return Integer.parseInt(serverResult);
+        else return 0;
     }
 
     // Gets the ID of the player whose turn it is
@@ -231,7 +235,9 @@ public class Player {
             e.printStackTrace();
         }
 
-        return Integer.parseInt(serverResult);
+        if(serverResult != null)
+            return Integer.parseInt(serverResult);
+        else return 0;
     }
 
     // Gets the current stage of the game (0 = no table cards, 1 = flop, 2 = turn, 3 = river)
@@ -251,8 +257,9 @@ public class Player {
             e.printStackTrace();
         }
 
-
-        return Integer.parseInt(serverResult);
+        if(serverResult != null)
+            return Integer.parseInt(serverResult);
+        else return 3;
 
     }
 
