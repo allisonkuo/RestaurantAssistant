@@ -1,5 +1,6 @@
 package com.example.allisonkuo.restaurantassistant;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -266,7 +267,8 @@ public class SecondActivity extends AppCompatActivity {
         tCard5.setVisibility(View.GONE);
         pCard1.setVisibility(View.GONE);
         pCard2.setVisibility(View.GONE);
-        //set text invisible
+
+        //set text font then make invisible
         turnText = (TextView) findViewById(R.id.text_turn);
         turnTextVal = (TextView) findViewById(R.id.text_turn_value);
         oppBet = (TextView) findViewById(R.id.text_opponent_bet);
@@ -278,6 +280,32 @@ public class SecondActivity extends AppCompatActivity {
         totalPot = (TextView) findViewById(R.id.text_pot);
         totalPotVal = (TextView) findViewById(R.id.text_pot_val);
         message = (TextView) findViewById(R.id.text_message);
+        Typeface font = Typeface.createFromAsset(getAssets(), "Lato-Light.ttf");
+        Typeface bold = Typeface.createFromAsset(getAssets(), "Lato-Bold.ttf");
+        turnText.setTypeface(bold);
+        turnTextVal.setTypeface(font);
+        oppBet.setTypeface(bold);
+        oppBetVal.setTypeface(font);
+        currBet.setTypeface(bold);
+        currBetVal.setTypeface(font);
+        wallet.setTypeface(bold);
+        walletVal.setTypeface(font);
+        totalPot.setTypeface(bold);
+        totalPotVal.setTypeface(font);
+        message.setTypeface(font);
+
+        /*turnText.setTextSize(24);
+        turnTextVal.setTextSize(24);
+        oppBet.setTextSize(24);
+        oppBetVal.setTextSize(24);
+        currBet.setTextSize(24);
+        currBetVal.setTextSize(24);
+        wallet.setTextSize(24);
+        walletVal.setTextSize(24);
+        totalPot.setTextSize(24);
+        totalPotVal.setTextSize(24);
+        message.setTextSize(24);*/
+
         turnText.setVisibility(View.GONE);
         turnTextVal.setVisibility(View.GONE);
         oppBet.setVisibility(View.GONE);
@@ -360,6 +388,7 @@ public class SecondActivity extends AppCompatActivity {
     public void onP1Click(){
         currPlayer = p1;
         playerId = 0;
+
         //enable buttons
         bCheckCall.setVisibility(View.VISIBLE);
         bRaise.setVisibility(View.VISIBLE);

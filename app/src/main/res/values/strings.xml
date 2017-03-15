@@ -25,8 +25,8 @@
     <string name="current_bet">Current Bet:</string>
     <string name="wallet">Wallet:</string>
     <string name="hello_world">Hello world! Welcome to my app!</string>
-    <string name="current_turn">Turn:</string>
-    <string name="total_pot">Total Pot:</string>
+    <string name="current_turn">TURN:</string>
+    <string name="total_pot">TOTAL POT:</string>
     <string name="new_game">New Game</string>
     //buttons
     <string name="b_wifi">WiFi</string>

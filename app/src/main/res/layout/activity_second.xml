@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg3"
     tools:context="com.example.allisonkuo.restaurantassistant.SecondActivity">
 
     <View
@@ -24,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_gravity="center"
-            android:layout_margin="50dp"
+            android:layout_margin="10dp"
             android:scaleType="fitCenter"
             android:src="@drawable/player1"
             android:contentDescription="@string/button_player1"
@@ -36,8 +37,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_margin="10dp"
             android:layout_gravity="center"
-            android:layout_margin="50dp"
             android:scaleType="fitCenter"
             android:src="@drawable/player2"
             android:contentDescription="@string/button_player2"
@@ -81,71 +82,68 @@
         android:layout_above="@+id/button_fold"
         android:layout_alignParentEnd="true" />
 
-    <ImageView
-        android:id="@+id/t_card1"
-        android:layout_width="89dp"
-        android:layout_height="125dp"
-        android:adjustViewBounds="true"
-        android:cropToPadding="false"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/ccard_back"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/t_card2" />
-    <ImageView
-        android:id="@+id/t_card2"
-        android:layout_width="89dp"
-        android:layout_height="125dp"
-        android:adjustViewBounds="true"
-        android:cropToPadding="false"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/ccard_back"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/t_card3" />
-    <ImageView
-        android:id="@+id/t_card3"
-        android:layout_width="89dp"
-        android:layout_height="125dp"
-        android:adjustViewBounds="true"
-        android:cropToPadding="false"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/ccard_back"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-    <ImageView
-        android:id="@+id/t_card4"
-        android:layout_width="89dp"
-        android:layout_height="125dp"
-        android:adjustViewBounds="true"
-        android:cropToPadding="false"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/ccard_back"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/t_card3" />
-    <ImageView
-        android:id="@+id/t_card5"
-        android:layout_width="89dp"
-        android:layout_height="125dp"
-        android:adjustViewBounds="true"
-        android:cropToPadding="false"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/ccard_back"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/t_card4" />
+     <LinearLayout
+         android:layout_width="500dp"
+         android:layout_height="wrap_content"
+         android:layout_centerHorizontal="true">
+        <ImageView
+            android:id="@+id/t_card1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:adjustViewBounds="true"
+            android:cropToPadding="false"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/ccard_back"
+            android:layout_marginTop="5dp" />
+        <ImageView
+            android:id="@+id/t_card2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:adjustViewBounds="true"
+            android:cropToPadding="false"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/ccard_back"
+            android:layout_marginTop="5dp" />
+        <ImageView
+            android:id="@+id/t_card3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:adjustViewBounds="true"
+            android:cropToPadding="false"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/ccard_back"
+            android:layout_marginTop="5dp" />
+        <ImageView
+            android:id="@+id/t_card4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:adjustViewBounds="true"
+            android:cropToPadding="false"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/ccard_back"
+
+            android:layout_marginTop="5dp" />
+        <ImageView
+            android:id="@+id/t_card5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:cropToPadding="false"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/ccard_back"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp" />
+     </LinearLayout>
+
     <ImageView
         android:id="@+id/p_card1"
         android:layout_width="89dp"
@@ -171,40 +169,68 @@
         android:layout_alignStart="@+id/anchor" />
 
     <TextView
+        android:id="@+id/text_turn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/current_turn"
+        tools:text="@string/current_turn"
+        android:layout_above="@+id/text_pot"
+        android:layout_alignParentStart="true" />
+
+    <TextView
         android:id="@+id/text_turn_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Player"
-        android:layout_marginLeft="5dp"
-        android:layout_alignBaseline="@+id/text_turn"
-        android:layout_alignBottom="@+id/text_turn"
-        android:layout_alignStart="@+id/t_card1" />
+        android:layout_above="@+id/text_pot_val"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/text_turn" />
+
+    <TextView
+        android:id="@+id/text_pot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_above="@+id/text_opponent_bet"
+        android:layout_toStartOf="@+id/text_opponent_bet_value"
+        android:text="@string/total_pot"
+        tools:text="@string/total_pot" />
+
+    <TextView
+        android:id="@+id/text_pot_val"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/text_opponent_bet_value"
+        android:layout_alignStart="@+id/text_opponent_bet_value" />
 
     <TextView
         android:id="@+id/text_opponent_bet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:text="@string/opponent_bet"
         tools:text="@string/opponent_bet"
         android:layout_above="@+id/button_fold"
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:id="@+id/text_current_bet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/current_bet"
-        tools:text="@string/current_bet"
-        android:layout_below="@+id/text_opponent_bet"
-        android:layout_toStartOf="@+id/text_opponent_bet_value" />
-
-    <TextView
         android:id="@+id/text_opponent_bet_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/text_current_bet_value"
-        android:layout_marginLeft="5dp"
+        android:layout_marginStart="10dp"
         android:layout_toEndOf="@+id/text_opponent_bet" />
+
+    <TextView
+        android:id="@+id/text_current_bet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/current_bet"
+        tools:text="@string/current_bet"
+        android:layout_below="@+id/text_opponent_bet"
+        android:layout_toStartOf="@+id/text_opponent_bet_value" />
 
     <TextView
         android:id="@+id/text_current_bet_value"
@@ -217,6 +243,7 @@
         android:id="@+id/text_wallet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:text="@string/wallet"
         tools:text="@string/wallet"
         android:layout_below="@+id/text_current_bet"
@@ -228,31 +255,6 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/text_current_bet_value"
         android:layout_below="@+id/text_current_bet_value" />
-
-    <TextView
-        android:id="@+id/text_turn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/current_turn"
-        tools:text="@string/current_turn"
-        android:layout_alignTop="@+id/p_card1"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:id="@+id/text_pot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/text_opponent_bet"
-        android:layout_toStartOf="@+id/text_opponent_bet_value"
-        android:text="@string/total_pot"
-        tools:text="@string/total_pot" />
-
-    <TextView
-        android:id="@+id/text_pot_val"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/text_opponent_bet_value"
-        android:layout_alignStart="@+id/text_opponent_bet_value" />
 
     <TextView
         android:id="@+id/text_message"
