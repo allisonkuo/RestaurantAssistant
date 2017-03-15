@@ -309,6 +309,8 @@ public class SecondActivity extends AppCompatActivity {
         totalPot = (TextView) findViewById(R.id.text_pot);
         totalPotVal = (TextView) findViewById(R.id.text_pot_val);
         message = (TextView) findViewById(R.id.text_message);
+
+        // change font
         Typeface font = Typeface.createFromAsset(getAssets(), "Lato-Light.ttf");
         Typeface bold = Typeface.createFromAsset(getAssets(), "Lato-Bold.ttf");
         turnText.setTypeface(bold);
@@ -323,17 +325,6 @@ public class SecondActivity extends AppCompatActivity {
         totalPotVal.setTypeface(font);
         message.setTypeface(font);
 
-        /*turnText.setTextSize(24);
-        turnTextVal.setTextSize(24);
-        oppBet.setTextSize(24);
-        oppBetVal.setTextSize(24);
-        currBet.setTextSize(24);
-        currBetVal.setTextSize(24);
-        wallet.setTextSize(24);
-        walletVal.setTextSize(24);
-        totalPot.setTextSize(24);
-        totalPotVal.setTextSize(24);
-        message.setTextSize(24);*/
 
         turnText.setVisibility(View.GONE);
         turnTextVal.setVisibility(View.GONE);

@@ -82,10 +82,37 @@
         android:layout_above="@+id/button_fold"
         android:layout_alignParentEnd="true" />
 
+    <!-- opponent values -->
+    <TextView
+        android:id="@+id/text_opponent_bet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="35dp"
+        android:text="@string/opponent_bet"
+        tools:text="@string/opponent_bet"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/text_opponent_bet_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="35dp"
+        android:layout_toEndOf="@+id/text_opponent_bet"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"/>
+
+    <!-- the five cards -->
      <LinearLayout
-         android:layout_width="1000dp"
+         android:id="@+id/five_cards"
+         android:layout_width="800dp"
          android:layout_height="wrap_content"
-         android:layout_centerHorizontal="true">
+         android:layout_centerHorizontal="true"
+         android:layout_marginTop="150dp">
         <ImageView
             android:id="@+id/t_card1"
             android:layout_width="0dp"
@@ -129,7 +156,6 @@
             android:cropToPadding="false"
             android:scaleType="fitXY"
             app:srcCompat="@drawable/ccard_back"
-
             android:layout_marginTop="5dp" />
         <ImageView
             android:id="@+id/t_card5"
@@ -144,29 +170,59 @@
             android:layout_marginTop="5dp" />
      </LinearLayout>
 
+    <!-- current bets -->
+    <TextView
+        android:id="@+id/text_current_bet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:textSize="24sp"
+        android:text="@string/current_bet"
+        tools:text="@string/current_bet"
+        android:layout_below="@+id/five_cards"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/text_current_bet_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:layout_toEndOf="@+id/text_current_bet"
+        android:layout_below="@+id/five_cards"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:layout_marginStart="10dp"
+        android:textColor="@android:color/white"/>
+
+    <!-- the player's two cards -->
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true">
     <ImageView
         android:id="@+id/p_card1"
-        android:layout_width="89dp"
-        android:layout_height="125dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_margin="5dp"
         android:adjustViewBounds="true"
         android:cropToPadding="false"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/ccard_back"
-        android:layout_marginRight="15dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/anchor" />
+        app:srcCompat="@drawable/ccard_back" />
 
     <ImageView
         android:id="@+id/p_card2"
-        android:layout_width="89dp"
-        android:layout_height="125dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_margin="5dp"
         android:adjustViewBounds="true"
         android:cropToPadding="false"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/ccard_back"
-        android:layout_marginLeft="15dp"
-        android:layout_alignTop="@+id/p_card1"
-        android:layout_alignStart="@+id/anchor" />
+        app:srcCompat="@drawable/ccard_back" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/text_turn"
@@ -176,6 +232,7 @@
         android:text="@string/current_turn"
         tools:text="@string/current_turn"
         android:layout_above="@+id/text_pot"
+        android:textColor="@android:color/white"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -183,6 +240,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Player"
+        android:textColor="@android:color/white"
         android:layout_above="@+id/text_pot_val"
         android:layout_marginStart="10dp"
         android:layout_toEndOf="@+id/text_turn" />
@@ -192,52 +250,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_above="@+id/text_opponent_bet"
-        android:layout_toStartOf="@+id/text_opponent_bet_value"
+
         android:text="@string/total_pot"
-        tools:text="@string/total_pot" />
+        tools:text="@string/total_pot"
+        android:textColor="@android:color/white"/>
+
 
     <TextView
         android:id="@+id/text_pot_val"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/text_opponent_bet_value"
-        android:layout_alignStart="@+id/text_opponent_bet_value" />
 
-    <TextView
-        android:id="@+id/text_opponent_bet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/opponent_bet"
-        tools:text="@string/opponent_bet"
-        android:layout_above="@+id/button_fold"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:id="@+id/text_opponent_bet_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/text_current_bet_value"
-        android:layout_marginStart="10dp"
-        android:layout_toEndOf="@+id/text_opponent_bet" />
-
-    <TextView
-        android:id="@+id/text_current_bet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/current_bet"
-        tools:text="@string/current_bet"
-        android:layout_below="@+id/text_opponent_bet"
-        android:layout_toStartOf="@+id/text_opponent_bet_value" />
-
-    <TextView
-        android:id="@+id/text_current_bet_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/text_opponent_bet_value"
-        android:layout_below="@+id/text_opponent_bet" />
+        android:textColor="@android:color/white"/>
 
     <TextView
         android:id="@+id/text_wallet"
@@ -246,22 +270,23 @@
         android:layout_marginStart="10dp"
         android:text="@string/wallet"
         tools:text="@string/wallet"
-        android:layout_below="@+id/text_current_bet"
-        android:layout_alignEnd="@+id/text_current_bet" />
+
+        android:textColor="@android:color/white"/>
 
     <TextView
         android:id="@+id/text_wallet_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/text_current_bet_value"
-        android:layout_below="@+id/text_current_bet_value" />
+
+        android:textColor="@android:color/white"/>
 
     <TextView
         android:id="@+id/text_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" />
+        android:layout_centerVertical="true"
+        android:textColor="@android:color/white"/>
 
     <Button
         android:id="@+id/button_raise_high"

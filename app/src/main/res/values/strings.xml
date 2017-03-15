@@ -21,8 +21,8 @@
     //textViews
     <string name="app_name2">Poker</string>
     <string name="choose_network">Please select a network connection:</string>
-    <string name="opponent_bet">Opponent\'s Bet:</string>
-    <string name="current_bet">Current Bet:</string>
+    <string name="opponent_bet">OPPONENT\'S BET:</string>
+    <string name="current_bet">CURRENT BET:</string>
     <string name="wallet">Wallet:</string>
     <string name="hello_world">Hello world! Welcome to my app!</string>
     <string name="current_turn">TURN:</string>
