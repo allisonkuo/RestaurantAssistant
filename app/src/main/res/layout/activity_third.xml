@@ -15,7 +15,7 @@
     <Button
         android:text="Enable Discoverable"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="75dp"
         android:id="@+id/btnDiscoverable_on_off"
         android:onClick="btnEnableDisable_Discoverable"
         android:background="@color/appetizerColor"
@@ -25,7 +25,7 @@
 
     <Button
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="75dp"
         android:id="@+id/btnFindUnpairedDevices"
         android:text="Discover"
         android:onClick="btnDiscover"
@@ -38,7 +38,7 @@
 
     <Button
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="75dp"
         android:id="@+id/btnStartConnection"
         android:text="Make Connection"
         android:background="@color/sandwichesColor"
@@ -51,7 +51,7 @@
 
     <Button
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="75dp"
         android:text="START"
         android:id="@+id/btnSend"
         android:background="@color/dessertsColor"
@@ -67,7 +67,7 @@
         android:layout_below="@+id/btnDiscoverable_on_off"
         android:layout_alignParentStart="true"
         android:layout_marginTop="15dp"
-        />
+        android:layout_alignParentBottom="true" />
 
 
 </RelativeLayout>

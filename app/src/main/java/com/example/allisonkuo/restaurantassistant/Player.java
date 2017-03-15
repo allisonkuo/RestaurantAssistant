@@ -208,7 +208,10 @@ public class Player {
             e.printStackTrace();
         }
 
-        return Integer.parseInt(serverResult);
+        if(!serverResult.equals(""))
+             return Integer.parseInt(serverResult);
+        else
+            return getCurrPlayerID();
     }
 
     // Gets the current amount of money that the player must match to play
@@ -248,7 +251,10 @@ public class Player {
             e.printStackTrace();
         }
 
-        return Integer.parseInt(serverResult);
+        if(!serverResult.equals(""))
+            return Integer.parseInt(serverResult);
+        else
+            return getCurrBetInRound();
     }
 
     // Analogous to raise

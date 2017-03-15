@@ -175,10 +175,16 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
     protected void onDestroy() {
         Log.d(TAG, "onDestroy: called.");
         super.onDestroy();
-        unregisterReceiver(mBroadcastReceiver1);
-        unregisterReceiver(mBroadcastReceiver2);
-        unregisterReceiver(mBroadcastReceiver3);
-        unregisterReceiver(mBroadcastReceiver4);
+        try {
+            unregisterReceiver(mBroadcastReceiver1);
+            unregisterReceiver(mBroadcastReceiver2);
+            unregisterReceiver(mBroadcastReceiver3);
+            unregisterReceiver(mBroadcastReceiver4);
+        }
+        catch(IllegalArgumentException e)
+        {
+            e.printStackTrace();
+        }
         //mBluetoothAdapter.cancelDiscovery();
     }
 
