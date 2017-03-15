@@ -1,5 +1,6 @@
 package com.example.allisonkuo.restaurantassistant;
 
+import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -184,7 +186,6 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
-        Button btnONOFF = (Button) findViewById(R.id.btnONOFF);
         btnEnableDisable_Discoverable = (Button) findViewById(R.id.btnDiscoverable_on_off);
         lvNewDevices = (ListView) findViewById(R.id.lvNewDevices);
         mBTDevices = new ArrayList<>();
@@ -202,13 +203,7 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
         lvNewDevices.setOnItemClickListener(ThirdActivity.this);
 
 
-        btnONOFF.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d(TAG, "onClick: enabling/disabling bluetooth.");
-                enableDisableBT();
-            }
-        });
+
 
         btnStartConnection.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -316,14 +311,14 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
      */
     private void checkBTPermissions() {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
-            /*
+
             int permissionCheck = this.checkSelfPermission("Manifest.permission.ACCESS_FINE_LOCATION");
             permissionCheck += this.checkSelfPermission("Manifest.permission.ACCESS_COARSE_LOCATION");
             if (permissionCheck != 0) {
 
                 this.requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1001); //Any number
             }
-            */
+
         } else {
             Log.d(TAG, "checkBTPermissions: No need to check permissions. SDK version < LOLLIPOP.");
         }
@@ -369,7 +364,6 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
     private int P2handDelivered; //0=no, 1=yes
 
     //reg variables
-    private int bettingRound;
     private int prevBet;
     private int totalBet;
     private int calcHand;
@@ -383,8 +377,8 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
     private Hand hand1;
     private Hand hand2;
     //UI variables
-    Button bPlayer1;
-    Button bPlayer2;
+    ImageButton bPlayer1;
+    ImageButton bPlayer2;
     Button bCheckCall;
     Button bFold;
     Button bRaise;
@@ -413,101 +407,26 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
 
     String[] DataSync;
 
+    int nextRound = 1;
+
     int ReceivedTurn=0;
     final int delay = 2000; //milliseconds
 
     int prevBT=0;
-    int JustGotBT =0;
 
-    public void startPokerGame() {
-
-        //initialize state variables
-
-        bettingRound = 0;
-        prevBet = 0;
-
-        //set up timer
-        final Handler h = new Handler();
-
-
-
-        //determine who is player 1
-
-
-        //call a function to set up P1
-
-
-    }
-
+    // BEGINNING
     public void CreateGame() {
-        bettingRound = 0;
+        nextRound = 1;
         prevBet = 0;
 
         //set up timer
         final Handler h = new Handler();
-
-
-        /*
-        if (playerId == 0) {
-            //logic for p1 setup
-            //if(playerId)
-            final Deck d = new Deck();
-            final Hand hand1 = new Hand(d);
-            final Hand hand2 = new Hand(d);
-            //final Player p1 = new Player(0, 10000);
-            p1 = new BTPlayer(0, 10000);
-            p1.resetRound();
-            p1.setHand(hand1);
-            //final Player p2 = new Player(1, 10000);
-            p2 = new BTPlayer(1, 10000);
-            p2.setHand(hand2);
-
-            DataSync = p1.GetBluetoothArray();
-
-            String[] temp;
-            temp = p2.GetBluetoothArray();
-
-            DataSync[7]=temp[7];
-            DataSync[8]=temp[8];
-            //at this point, Datasync will contain the bluetooth data for all fields
-
-            String result="";
-            result = ConvertArrayToString(DataSync);
-            p1.SetBluetoothData(result);
-            p2.SetBluetoothData(result);
-
-
-
-            //p1 sends data to p2
-            SendDataBT(result);
-            SendDataBT(result);
-            //double tap...lol
-
-            //TODO dispay your own cards. use retValofBluetoothdata to access slots 5 and 6
-        }
-        else if(playerId==1)
-        {
-            //wait for P1s signal to go through
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e)
-            {
-                e.printStackTrace();
-            }
-
-            //TODO SET UP SECOND PLAYERS CARDS USING BLUETOOTH DATA YOU GET
-            //use the retValofBluetoothData function to access your own cards (slots 7 and 8)
-        }
-
-        */
-
 
         setContentView(R.layout.activity_second);
         //hide buttons till start is pressed
         initUI();
         firstLoop = 1;
         //initialize state variables
-        bettingRound = 0;
         prevBet = 0;
         totalBet = 0;
         shownFlop = 0;
@@ -527,9 +446,6 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
         turnCheck[1] = 0;
         turnCheck[2] = 0;
         turnCheck[3] = 0;
-        //set up timer for loop
-        //final Handler h = new Handler();
-        //final int delay = 2000; //milliseconds
 
         //button behaviors
         bPlayer1.setOnClickListener(new View.OnClickListener() {
@@ -543,9 +459,7 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
         bPlayer2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Log.d("before","before waiting");
                 onP2Click();
-                //Log.d("after","after waiting");
                 initGame();
             }
         });
@@ -595,48 +509,59 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
                 if (firstLoop == 1 && currPlayer!=null) {
                     currPlayer.giveTurnToPlayer(0);
                     firstLoop = 0;
-                    ReceivedTurn=0;
+                    ReceivedTurn = 0;
                 }
-                Log.d("testTag",Integer.toString(currPlayer.getCurrPlayerID()));
                 //set buttons
                 if (currPlayer!=null)
-                if (currPlayer.getCurrPlayerID() != playerId) {
-                    //if not player's turn, disable buttons
-                    bCheckCall.setEnabled(false);
-                    bRaise.setEnabled(false);
-                    bRaiseH.setEnabled(false);
-                    bFold.setEnabled(false);
-                    if (playerId == 0) {
-                        turnTextVal.setText("Player 2");
-                    } else if (playerId == 1) {
-                        turnTextVal.setText("Player 1");
+                    if (currPlayer.getCurrPlayerID() != playerId) {
+                        //if not player's turn, disable buttons
+                        bCheckCall.setEnabled(false);
+                        bRaise.setEnabled(false);
+                        bRaiseH.setEnabled(false);
+                        bFold.setEnabled(false);
+                        if (playerId == 0) {
+                            turnTextVal.setText("Player 2");
+                        } else if (playerId == 1) {
+                            turnTextVal.setText("Player 1");
+                        }
+                    } else if (currPlayer.getCurrPlayerID() == playerId) {
+                        bCheckCall.setEnabled(true);
+                        //bRaise.setEnabled(true);
+                        //bRaiseH.setEnabled(true);
+                        //bFold.setEnabled(true);
+                        bRaise.setEnabled(false);
+                        bRaiseH.setEnabled(false);
+                        bFold.setEnabled(false);
+                        if (playerId == 0) {
+                            turnTextVal.setText("Player 1");
+                        } else if (playerId == 1) {
+                            turnTextVal.setText("Player 2");
+                        }
                     }
-                } else if (currPlayer.getCurrPlayerID() == playerId) {
-                    bCheckCall.setEnabled(true);
-                    //bRaise.setEnabled(true);
-                    //bRaiseH.setEnabled(true);
-                    //bFold.setEnabled(true);
-                    bRaise.setEnabled(false);
-                    bRaiseH.setEnabled(false);
-                    bFold.setEnabled(false);
-                    if (playerId == 0) {
-                        turnTextVal.setText("Player 1");
-                    } else if (playerId == 1) {
-                        turnTextVal.setText("Player 2");
-                    }
-                }
+
                 //only advance if it is the current player's turn
                 //see if we have to change check/call
-                Log.d("testTag2",Integer.toString(currPlayer.getCurrPlayerID()));
                 //we have started the game by choosing a player
                 if (playerId != -1) {
                     String[] TempData;
                     if(mBluetoothConnection.returnInbound()!=null) {
                         TempData = mBluetoothConnection.returnInbound().split(",");
                         int tempInt = Integer.parseInt(TempData[0]);
+                        int curRound = Integer.parseInt((TempData[1]));
 
-                        if (ReceivedTurn == 0 &&tempInt==playerId){
+                        Log.d("nextRound", String.valueOf(nextRound));
+                        Log.d("curRound", String.valueOf(curRound));
+                        if (playerId == 0 && nextRound == curRound && ReceivedTurn == 0 &&tempInt==playerId){
+                            nextRound++;
                         //&& Integer.parseInt(TempData[0]) == playerId && currPlayer.getCurrPlayerID()==playerId) {
+                            ReceivedTurn = 1;
+                            //prevBT=tempInt;
+                            BegTurnSync();
+                            EndTurnSend();
+                        }
+                        else if (playerId == 1 && nextRound == curRound && ReceivedTurn == 0 &&tempInt==playerId){
+                            nextRound++;
+                            //&& Integer.parseInt(TempData[0]) == playerId && currPlayer.getCurrPlayerID()==playerId) {
                             ReceivedTurn = 1;
                             //prevBT=tempInt;
                             BegTurnSync();
@@ -646,15 +571,6 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
 
                     }
 
-
-
-
-
-
-
-
-
-                    Log.d("testTag3",Integer.toString(currPlayer.getCurrPlayerID()));
                     //set text
                     oppBetVal.setText(Integer.toString(currPlayer.getBet() - currPlayer.getCurrBetInRound()));
                     currBetVal.setText(Integer.toString(currPlayer.getCurrBetInRound()));
@@ -688,11 +604,9 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
                             onLose();
                         } else if (res == 0) {
                             //message.setText("You Tied!");
-                            // Log.d("iftie", " you tied");
                             onTie();
                         } else if (res == 1) {
                             //message.setText("You Won!");
-                            //Log.d("ifwin", " you won");
                             onWin();
                         }
                         try {
@@ -720,13 +634,6 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
             result += Index[i] + ",";
         }
         return result;
-    }
-
-    int retValofBluetoothData(int x) {
-        //return a specific one of the bluetooth values
-        String[] tempArray = mBluetoothConnection.returnInbound().split(",");
-        return Integer.parseInt(tempArray[x]);
-
     }
 
     void EndTurnSend() {
@@ -759,10 +666,9 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
         }
     }
 
-
     private void initUI(){
-        bPlayer1 = (Button) findViewById(R.id.button_player_1);
-        bPlayer2 = (Button) findViewById(R.id.button_player_2);
+        bPlayer1 = (ImageButton) findViewById(R.id.button_player_1);
+        bPlayer2 = (ImageButton) findViewById(R.id.button_player_2);
         bCheckCall = (Button) findViewById(R.id.button_call_check);
         bFold = (Button) findViewById(R.id.button_fold);
         bRaise = (Button) findViewById(R.id.button_raise);
@@ -919,9 +825,7 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
         p2.resetRound();
         p1.setHand(hand1);
         p2.setHand(hand2);
-        //p1.setHandByID(1, hand2);
 
-        //String[]DataSync;
         DataSync = p1.GetBluetoothArray();
 
         String[] temp;
@@ -936,15 +840,10 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
         p1.SetBluetoothData(result);
         p2.SetBluetoothData(result);
 
-
-
         //p1 sends data to p2
         SendDataBT(result);
-        SendDataBT(result);
-        //double tap...lol
 
         prevBT=1;
-
 
     }
     public void onP2Click(){
@@ -957,6 +856,7 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
         }
 
         BegTurnSync();
+        nextRound = 0;
 
         currPlayer = p2;
         playerId = 1;
@@ -990,10 +890,7 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
         totalPot.setVisibility(View.VISIBLE);
         totalPotVal.setVisibility(View.VISIBLE);
         totalPotVal.setText(Integer.toString(p2.getPot()));
-        //if p2, we have to grab p2 cards from server
 
-
-        //and also rebuild p1's hand
         while(true)
         {
             Card[] myCards = p2.getCards(1);
@@ -1174,7 +1071,6 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
         else
             currPlayer.winMoney(amtBetInGame * 2);
 
-        //Log.d("win", " you win");
         message.setText("You Win!");
         // Give the loser 3 seconds before the server is reset...
         try {
@@ -1221,20 +1117,6 @@ public class ThirdActivity extends AppCompatActivity implements AdapterView.OnIt
         }
         //Log.d("lose", " you lost");
         message.setText("You Lose!");
-    }
-
-    public void checkIfMyTurn()
-    {
-        while(true) {
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-        }
-
-
     }
 
 
