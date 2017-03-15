@@ -2,7 +2,7 @@ package com.example.allisonkuo.restaurantassistant;
 
 
 import java.util.concurrent.ExecutionException;
-
+import android.util.Log;
 import helper.serverCall;
 
 public class Player {
@@ -110,7 +110,7 @@ public class Player {
         }
     }
 
-    public Card[] getCards(int ID)
+    public static Card[] getCards(int ID)
     {
         Card[] result;
         int numCards;
@@ -172,7 +172,7 @@ public class Player {
     }
 
     // Returns the current amount of money in the pot
-    public int getPot()
+    public static int getPot()
     {
         String serverResult = "0";
         serverCall task = new serverCall();
@@ -215,7 +215,7 @@ public class Player {
     }
 
     // Gets the current amount of money that the player must match to play
-    public int getBet()
+    public static int getBet()
     {
         String serverResult = "0";
         serverCall task = new serverCall();
@@ -235,7 +235,7 @@ public class Player {
     }
 
     // Gets the current stage of the game (0 = no table cards, 1 = flop, 2 = turn, 3 = river)
-    public int getCurrBettingRound()
+    public static int getCurrBettingRound()
     {
         String serverResult = "0";
         serverCall task = new serverCall();
@@ -263,6 +263,8 @@ public class Player {
     // Returns the current highest bet in the current betting round
     public int bet(int amount)
     {
+        if(amount < 0)
+            return 0;
         int result = 0;
         if(amount > money) {
             result = money;
@@ -274,6 +276,7 @@ public class Player {
             result = amount;
         }
 
+        Log.d("Bet Increase:", Integer.toString(result));
 
         serverCall task = new serverCall();
         // Increase the pot value in the server
@@ -370,7 +373,7 @@ public class Player {
     }
 
     // Used once everyone is done betting/checking to update how many cards are shown on the table
-    public void incBettingRound()
+    public static void incBettingRound()
     {
         serverCall task = new serverCall();
 
@@ -463,5 +466,6 @@ public class Player {
     public void winMoney(int amount)
     {
         money += amount;
+        setBalance(PlayerID, money);
     }
 }
