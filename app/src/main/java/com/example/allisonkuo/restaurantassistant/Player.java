@@ -208,7 +208,7 @@ public class Player {
             e.printStackTrace();
         }
 
-        if(!serverResult.equals(""))
+        if(serverResult != null)
              return Integer.parseInt(serverResult);
         else
             return getCurrPlayerID();
@@ -251,7 +251,7 @@ public class Player {
             e.printStackTrace();
         }
 
-        if(!serverResult.equals(""))
+        if(serverResult != null)
             return Integer.parseInt(serverResult);
         else
             return getCurrBetInRound();
