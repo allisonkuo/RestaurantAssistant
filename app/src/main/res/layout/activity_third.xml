@@ -11,45 +11,63 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.allisonkuo.restaurantassistant.ThirdActivity">
 
+
     <Button
         android:text="Enable Discoverable"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:id="@+id/btnDiscoverable_on_off"
         android:onClick="btnEnableDisable_Discoverable"
+        android:background="@color/appetizerColor"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/white"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:id="@+id/btnFindUnpairedDevices"
         android:text="Discover"
-        android:onClick="btnDiscover"/>
+        android:onClick="btnDiscover"
+        android:background="@color/burgersColor"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/btnDiscoverable_on_off"
+        android:layout_marginLeft="30px"
+        android:textColor="@android:color/white"
+/>
 
     <Button
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnFindUnpairedDevices"
         android:id="@+id/btnStartConnection"
-        android:text="Start Connection"/>
+        android:text="Make Connection"
+        android:background="@color/sandwichesColor"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/btnSend"
+        android:layout_marginRight="30px"
+        android:textColor="@android:color/white"
+/>
 
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="START"
+        android:id="@+id/btnSend"
+        android:background="@color/dessertsColor"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="@android:color/white"
+ />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:id="@+id/lvNewDevices"
-        android:layout_marginBottom="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="START"
-        android:id="@+id/btnSend"
-        android:layout_toEndOf="@+id/btnDiscoverable_on_off" />
+        android:layout_below="@+id/btnDiscoverable_on_off"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp"
+        />
 
 
 </RelativeLayout>
