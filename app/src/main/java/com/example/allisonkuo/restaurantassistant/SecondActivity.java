@@ -3,11 +3,14 @@ package com.example.allisonkuo.restaurantassistant;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.sax.RootElement;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ImageButton;
 
@@ -344,6 +347,9 @@ public class SecondActivity extends AppCompatActivity {
         totalPotVal.setVisibility(View.GONE);
     }
     private void initGame(){
+        RelativeLayout table = (RelativeLayout) findViewById(R.id.poker_table);
+        table.setBackground(ContextCompat.getDrawable(SecondActivity.this, R.drawable.bg4));
+
         if (playerId == 0) {
             String p1Card1String = p1.getHand().getPlayerHand()[0].imageString();
             String p1Card2String = p1.getHand().getPlayerHand()[1].imageString();

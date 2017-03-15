@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg4"
-    tools:context="com.example.allisonkuo.restaurantassistant.SecondActivity">
+    tools:context="com.example.allisonkuo.restaurantassistant.SecondActivity"
+    android:id="@+id/poker_table">
 
     <View
         android:id="@+id/anchor"
@@ -83,7 +83,7 @@
         android:layout_alignParentEnd="true" />
 
      <LinearLayout
-         android:layout_width="500dp"
+         android:layout_width="1000dp"
          android:layout_height="wrap_content"
          android:layout_centerHorizontal="true">
         <ImageView
