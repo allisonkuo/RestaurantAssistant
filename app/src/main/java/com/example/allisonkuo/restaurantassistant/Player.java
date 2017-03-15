@@ -251,10 +251,9 @@ public class Player {
             e.printStackTrace();
         }
 
-        if(serverResult != null)
-            return Integer.parseInt(serverResult);
-        else
-            return getCurrBetInRound();
+
+        return Integer.parseInt(serverResult);
+
     }
 
     // Analogous to raise
