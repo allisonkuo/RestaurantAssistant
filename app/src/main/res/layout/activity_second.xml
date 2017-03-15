@@ -46,39 +46,6 @@
             style="?android:attr/borderlessButtonStyle" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button_fold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/b_fold"
-        tools:layout_editor_absoluteX="488dp"
-        tools:layout_editor_absoluteY="223dp"
-        tools:text="@string/b_fold"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:id="@+id/button_raise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/b_raise"
-        tools:layout_editor_absoluteX="488dp"
-        tools:layout_editor_absoluteY="175dp"
-        tools:text="@string/b_raise"
-        android:layout_above="@+id/button_call_check"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:id="@+id/button_call_check"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/b_call"
-        tools:layout_editor_absoluteX="488dp"
-        tools:layout_editor_absoluteY="127dp"
-        tools:text="@string/b_call"
-        android:layout_above="@+id/button_fold"
-        android:layout_alignParentEnd="true" />
-
     <!-- player turn -->
     <TextView
         android:id="@+id/text_turn"
@@ -210,7 +177,7 @@
         android:layout_toEndOf="@+id/five_cards"
         android:layout_below="@+id/text_pot"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="60dp"
         android:textColor="@android:color/white"
         android:textSize="24sp"/>
 
@@ -301,14 +268,42 @@
         android:layout_centerVertical="true"
         android:textColor="@android:color/white"/>
 
+    <!-- play buttons -->
+    <Button
+        android:id="@+id/button_raise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/b_raise"
+        tools:text="@string/b_raise"
+        android:layout_toStartOf="@+id/button_raise_high"
+        android:layout_alignParentBottom="true" />
+
     <Button
         android:id="@+id/button_raise_high"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button_raise"
-        android:layout_toStartOf="@+id/button_raise"
+        android:layout_toStartOf="@+id/button_call_check"
+        android:layout_alignParentBottom="true"
         android:text="@string/b_raise_high"
         tools:text="@string/b_raise_high" />
+
+    <Button
+        android:id="@+id/button_call_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/b_call"
+        tools:text="@string/b_call"
+        android:layout_toStartOf="@+id/button_fold"
+        android:layout_alignParentBottom="true" />
+
+    <Button
+        android:id="@+id/button_fold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/b_fold"
+        tools:text="@string/b_fold"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/button_restart"
