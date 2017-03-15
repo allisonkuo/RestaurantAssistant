@@ -260,14 +260,6 @@
         android:textColor="@android:color/white"
         android:textSize="24sp"/>
 
-    <TextView
-        android:id="@+id/text_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:textColor="@android:color/white"/>
-
     <!-- play buttons -->
     <Button
         android:id="@+id/button_raise"
@@ -305,13 +297,24 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 
+    <!-- you win! -->
     <Button
         android:id="@+id/button_restart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/text_message"
         android:layout_centerHorizontal="true"
+        android:textSize="36sp"
         android:text="@string/new_game"
         tools:text="@string/new_game" />
+
+    <TextView
+        android:id="@+id/text_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textColor="@color/foodMenuColor"
+        android:textSize="36sp"/>
 
 </RelativeLayout>
