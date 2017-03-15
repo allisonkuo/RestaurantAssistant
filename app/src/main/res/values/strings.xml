@@ -23,7 +23,7 @@
     <string name="choose_network">Please select a network connection:</string>
     <string name="opponent_bet">OPPONENT\'S BET:</string>
     <string name="current_bet">CURRENT BET:</string>
-    <string name="wallet">Wallet:</string>
+    <string name="wallet">WALLET:</string>
     <string name="hello_world">Hello world! Welcome to my app!</string>
     <string name="current_turn">TURN:</string>
     <string name="total_pot">TOTAL POT:</string>
